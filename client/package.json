@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.development.js",
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf ./dist",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
