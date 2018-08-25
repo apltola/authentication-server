@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../styles/sass/testi.scss';
+import '../styles/sass/demo.scss';
 
 export default class Demo extends Component {
   render() {
