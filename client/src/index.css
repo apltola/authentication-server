@@ -71,6 +71,7 @@ button,
 	-webkit-appearance: none;
 }
 
-.jotain {
+.testi {
+	display: flex;
 	transition: all 200ms;
 }
