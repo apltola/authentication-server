@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import Header from './Header';
 import Home from './Home';
+import { hostname } from 'os';
 
 const Loading = (props) => {
   if (props.error) {
@@ -35,7 +37,7 @@ const LoadableNotFound = Loadable({
   delay: 300
 });
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <Router>
@@ -51,6 +53,8 @@ export default class App extends Component {
     )
   }
 }
+
+export default hot(module)(App);
 
 const LoadingContainer = styled.div`
   text-align: center;
