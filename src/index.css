@@ -1,0 +1,76 @@
+/* @font-face {
+  font-family: 'radnika';
+  src: url('./styles/fonts/Radnika-Bold.woff') format('woff');
+} */
+
+/* @font-face {
+  font-family: 'panama';
+  src: url('../fonts/panama-bold-webfont.woff2') format('woff2'),
+       url('../fonts/panama-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ostrich';
+  src: url('../fonts/ostrich-sans-bold.woff') format('woff');
+} */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  min-height: 100vh;
+  font-family:
+		-apple-system,
+		sans-serif,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
+b,
+strong {
+	font-weight: bolder;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+	-webkit-appearance: button;
+}
+
+[type='search']::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+.jotain {
+	transition: all 200ms;
+}
