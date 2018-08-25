@@ -6,12 +6,24 @@ import styled from 'styled-components'
 import Header from './Header';
 import Home from './Home';
 
+const Loading = () => {
+  if (props.error) {
+    return (
+      <div>Error! <button onClick={ props.retry }>Retry!</button></div>
+    )
+  }
+
+  else if (props.pastDelay) {
+    return <div>Loading...</div>
+  }
+
+  else return null;
+}
+
 const LoadableDemo = Loadable({
   loader: () => import('./Demo'),
-  loading() {
-    return <div>loading ...</div>
-  },
-  delay: 300
+  loading: Loading,
+  delay: 500
 });
 
 const LoadableNotFound = Loadable({
@@ -19,7 +31,7 @@ const LoadableNotFound = Loadable({
   loading() {
     return <div>loading ...</div>
   },
-  delay: 300
+  delay: 500
 });
 
 export default class App extends Component {
