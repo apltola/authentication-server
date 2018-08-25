@@ -15,7 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   module: {
     rules: [
@@ -55,8 +55,8 @@ module.exports = {
       favicon: 'public/favicon.ico'
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "styles/styles.[name].css",
+      chunkFilename: "styles/styles.[id].css"
     })
   ],
 
