@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 
-const dist = path.resolve(__dirname, '../client', 'dist');
+const dist = path.resolve(__dirname, 'client', 'dist');
 app.use(express.static(dist));
 
 app.get('*', (req, res) => {
