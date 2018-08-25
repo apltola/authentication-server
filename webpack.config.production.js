@@ -5,8 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const port = process.env.PORT || 3000;
-
 module.exports = {
   mode: 'production',
   entry: {
@@ -38,9 +36,13 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+              importLoaders: 1,
               camelCase: true,
               sourceMap: true
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       }
@@ -48,7 +50,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico'
@@ -58,14 +59,6 @@ module.exports = {
       chunkFilename: "[id].css"
     })
   ],
-
-  devServer: {
-    host: 'localhost',
-    port: port,
-    historyApiFallback: true,
-    open: true,
-    hot: true
-  },
 
   optimization: {
     minimizer: [
