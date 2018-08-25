@@ -1,13 +1,20 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const port = process.env.PORT || 3000;
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: 'production',
+  entry: {
+    app: './src/index.js'
+  },
   output: {
-    filename: '[name].[hash].js',
+    filename: 'static/[name].[hash].js',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
   devtool: 'inline-source-map',
@@ -26,9 +33,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -47,6 +52,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
   ],
 
@@ -56,5 +65,27 @@ module.exports = {
     historyApiFallback: true,
     open: true,
     hot: true
+  },
+
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ],
+
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
   }
 };
