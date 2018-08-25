@@ -7,7 +7,7 @@ export default class Home extends Component {
     return (
       <div>
         <Title>
-          hello world
+          well hello there, world <span>👋</span>
         </Title>
         <div>
           <Link to="/demo">link to demo page</Link>
