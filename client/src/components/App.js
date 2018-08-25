@@ -6,24 +6,25 @@ import styled from 'styled-components'
 import Header from './Header';
 import Home from './Home';
 
-const Loading = () => {
+const Loading = (props) => {
   if (props.error) {
     return (
-      <div>Error! <button onClick={ props.retry }>Retry!</button></div>
+      <LoadingContainer>Error! <button onClick={ props.retry }>Retry!</button></LoadingContainer>
     )
   }
-
-  else if (props.pastDelay) {
-    return <div>Loading...</div>
+  else if (props.timedOut) {
+    <LoadingContainer>This sure is taking a long time... <span>🤨</span></LoadingContainer>
   }
-
+  else if (props.pastDelay) {
+    return <LoadingContainer>Loading...</LoadingContainer>
+  }
   else return null;
 }
 
 const LoadableDemo = Loadable({
   loader: () => import('./Demo'),
   loading: Loading,
-  delay: 500
+  delay: 300
 });
 
 const LoadableNotFound = Loadable({
@@ -31,7 +32,7 @@ const LoadableNotFound = Loadable({
   loading() {
     return <div>loading ...</div>
   },
-  delay: 500
+  delay: 300
 });
 
 export default class App extends Component {
@@ -50,6 +51,11 @@ export default class App extends Component {
     )
   }
 }
+
+const LoadingContainer = styled.div`
+  text-align: center;
+  font-size: 3em;
+`;
 
 const Container = styled.div`
 `;
