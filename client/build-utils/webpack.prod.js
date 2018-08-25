@@ -1,33 +1,24 @@
-const path = require('path');
+const commonPaths = require('./common-paths');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = {
+const config = {
   mode: 'production',
+
   entry: {
-    app: './src/index.js'
+    app: [`${commonPaths.appEntry}/index.js`]
   },
+
   output: {
-    filename: 'static/[name].[hash].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    filename: 'static/[name].[hash].js'
   },
+
   devtool: 'source-map',
 
   module: {
     rules: [
-      
-      //first rule
-      {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
-
-      //second rule
       {
         test: /\.css$/,
         use: [
@@ -50,10 +41,6 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      favicon: 'public/favicon.ico'
-    }),
     new MiniCssExtractPlugin({
       filename: "styles/styles.[name].css",
       chunkFilename: "styles/styles.[id].css"
@@ -82,3 +69,5 @@ module.exports = {
     }
   }
 };
+
+module.exports = config;
