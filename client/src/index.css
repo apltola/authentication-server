@@ -1,21 +1,3 @@
-/* @font-face {
-  font-family: 'radnika';
-  src: url('./styles/fonts/Radnika-Bold.woff') format('woff');
-} */
-
-/* @font-face {
-  font-family: 'panama';
-  src: url('../fonts/panama-bold-webfont.woff2') format('woff2'),
-       url('../fonts/panama-bold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'ostrich';
-  src: url('../fonts/ostrich-sans-bold.woff') format('woff');
-} */
-
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -54,10 +36,10 @@ input,
 optgroup,
 select,
 textarea {
-	font-family: inherit; /* 1 */
-	font-size: 100%; /* 1 */
-	line-height: 1.15; /* 1 */
-	margin: 0; /* 2 */
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
 }
 
 button,

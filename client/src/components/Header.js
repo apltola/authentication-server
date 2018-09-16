@@ -7,7 +7,7 @@ export default class Header extends Component {
     return (
       <div>
         <h1>
-        <StyledLink to="/">WEBPACK + REACT</StyledLink>
+        <StyledLink to="/">REACT APP WITH WEBPACK 4</StyledLink>
         </h1>
       </div>
     )
@@ -22,7 +22,7 @@ const __Link = ({ className, to, children }) => (
 
 const StyledLink = styled(__Link)`
   display: inline-block;
-  color: black;
+  color: #000;
   font-weight: bold;
   text-decoration: none;
   transition: all 250ms;
