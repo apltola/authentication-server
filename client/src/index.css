@@ -52,8 +52,3 @@ button,
 [type='search']::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
-
-.testi {
-	display: flex;
-	transition: all 200ms;
-}
