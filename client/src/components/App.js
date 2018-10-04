@@ -41,14 +41,14 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Container>
+        <div>
           <Route component={Header} />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/demo" component={LoadableDemo} />
             <Route component={LoadableNotFound}/>
           </Switch>
-        </Container>
+        </div>
       </Router>
     )
   }
@@ -59,7 +59,4 @@ export default hot(module)(App);
 const LoadingContainer = styled.div`
   text-align: center;
   font-size: 3em;
-`;
-
-const Container = styled.div`
 `;
