@@ -8,17 +8,3 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
-
-// const render = Component => {
-//   ReactDOM.render(
-//     /* <AppContainer>
-//     </AppContainer>, */
-//     <Component />,
-//     document.getElementById('root')
-//   );
-// };
-
-// render(App);
-
-// Webpack Hot Module Replacement API
-/* if (module.hot) module.hot.accept('./components/App', () => render(App)); */
