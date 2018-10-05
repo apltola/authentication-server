@@ -6,35 +6,35 @@ import styled from 'styled-components';
 
 import Header from './Header';
 import Home from './Home';
-import { hostname } from 'os';
 
-const Loading = (props) => {
+const Loading = props => {
   if (props.error) {
-    return (
-      <LoadingContainer>Error! <button onClick={ props.retry }>Retry!</button></LoadingContainer>
-    )
+    return <LoadingContainer>
+      Error! <button onClick={ props.retry }>Retry!</button>
+    </LoadingContainer>
   }
+
   else if (props.timedOut) {
-    <LoadingContainer>This sure is taking a long time... <span>🤨</span></LoadingContainer>
+    return <LoadingContainer>This sure is taking a long time... <span>🤨</span></LoadingContainer>
   }
+
   else if (props.pastDelay) {
     return <LoadingContainer>Loading...</LoadingContainer>
   }
+
   else return null;
 }
 
-const LoadableDemo = Loadable({
+const LoadableDemoPage = Loadable({
   loader: () => import('./Demo'),
   loading: Loading,
-  delay: 300
+  delay: 1000
 });
 
-const LoadableNotFound = Loadable({
+const LoadableNotFoundPage = Loadable({
   loader: () => import('./NotFound'),
-  loading() {
-    return <div>loading ...</div>
-  },
-  delay: 300
+  loading: Loading,
+  delay: 1000
 });
 
 class App extends Component {
@@ -45,8 +45,8 @@ class App extends Component {
           <Route component={Header} />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/demo" component={LoadableDemo} />
-            <Route component={LoadableNotFound}/>
+            <Route exact path="/demo" component={LoadableDemoPage} />
+            <Route component={LoadableNotFoundPage}/>
           </Switch>
         </div>
       </Router>
@@ -54,9 +54,9 @@ class App extends Component {
   }
 }
 
-export default hot(module)(App);
-
 const LoadingContainer = styled.div`
   text-align: center;
   font-size: 3em;
 `;
+
+export default hot(module)(App);
