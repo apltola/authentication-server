@@ -22,19 +22,15 @@ passport.use(new GoogleStrategy(
     callbackURL: '/auth/google/callback',
     proxy: true
   },
-  (accessToken, refreshToken, profile, done) => {
-    User.findOne({ googleId: profile.id })
-      .then(existingUser => {
-        if (existingUser) {
-          console.log('USER ALREADY EXISTS !!!! ');
-          done(null, existingUser); //error is null
-        }
-        
-        else {
-          new User({ googleId: profile.id }) //new User() creates a new model instance and saves it to mongo
-            .save()
-            .then(user => done(null, user)); //'user' is the instance we got back from the promise.
-        }
-      });
+  async (accessToken, refreshToken, profile, done) => {
+    const existingUser = await User.findOne({ googleId: profile.id });
+
+    if (existingUser) {
+      console.log('user already exists!');
+      return done(null, existingUser);
+    }
+
+    const newUser = await new User({ googleId: profile.id }).save(); //new User() creates a new model instance and saves it to mongo
+    done(null, newUser);
   }
 ));
