@@ -53,7 +53,10 @@ const config = {
     port: port,
     historyApiFallback: true,
     hot: true,
-    open: true
+    open: true,
+    proxy: {
+      "/auth/google": { target: 'http://localhost:5000' }
+    }
   }
 };
 

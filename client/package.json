@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:5000"
+    }
+  },
   "scripts": {
     "dev": "webpack-dev-server --env.env=dev",
     "prebuild": "rimraf dist",

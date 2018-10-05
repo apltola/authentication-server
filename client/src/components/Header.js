@@ -7,7 +7,7 @@ export default class Header extends Component {
     return (
       <div>
         <h1>
-        <StyledLink to="/">AUTHENTICATION BOILERPLATE</StyledLink>
+          <StyledLink to="/">AUTHENTICATION BOILERPLATE</StyledLink>
         </h1>
       </div>
     )
