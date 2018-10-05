@@ -10,7 +10,7 @@ require('./services/passport');
 
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-app.use(cookieSession({ //this middleware handles cookie stuff. It adds property 'session' to req 'Set-Cookie' header to response
+app.use(cookieSession({ //cookieSession middleware handles cookie stuff. it extracts data from the browser cookie and assigns it to req.session. This happens before deserializeUser so passport is not looking at the cookie, it is looking at req.session.
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey]
 }));

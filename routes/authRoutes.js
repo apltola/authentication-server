@@ -5,7 +5,12 @@ module.exports = function(app) {
   
   app.get('/auth/google/callback', passport.authenticate('google'))
 
-  app.get('/api/current_user', (req, res) => {
+  app.get('/api/logout', (req, res) => {
+    req.logout(); //logout() is added by passport
     res.send(req.user);
+  });
+
+  app.get('/api/current_user', (req, res) => {
+    res.send(req.user); //req.user is added by passport
   });
 }  
