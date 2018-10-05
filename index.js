@@ -1,26 +1,16 @@
 const express = require('express');
 const app = express();
-
 const path = require('path');
+
 const keys = require('./config/keys');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
+require('./models/User');
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
-passport.use(new GoogleStrategy(
-  {
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
-  },
-  function(accessToken, refreshToken, profile, done) {
-    console.log({accessToken});
-    console.log({refreshToken});
-    console.log({profile});
-  }
-));
 
-/* app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/auth/google/callback', passport.authenticate('google')) */
+require('./services/passport');
+const authRoutes = require('./routes/authRoutes');
+authRoutes(app);
 
 
 if (process.env.NODE_ENV === 'production') {
