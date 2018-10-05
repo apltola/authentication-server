@@ -6,9 +6,17 @@ const keys = require('./config/keys');
 const mongoose = require('mongoose');
 require('./models/User');
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
-
-
 require('./services/passport');
+
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+app.use(cookieSession({ //this middleware handles cookie stuff. It adds property 'session' to req 'Set-Cookie' header to response
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+  keys: [keys.cookieKey]
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 const authRoutes = require('./routes/authRoutes');
 authRoutes(app);
 
