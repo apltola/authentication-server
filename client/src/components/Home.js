@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components'
+import '../styles/sass/components/Landing.scss';
 
 export default class Home extends Component {
   render() {
     return (
-      <div>
-        <Title>
+      <div className="landing-page">
+        <div className="title">
           hello <span>👋</span>
-        </Title>
+        </div>
         <div>
           <a href="/auth/google">sign up with google</a>
         </div>
@@ -22,8 +22,3 @@ export default class Home extends Component {
     )
   }
 }
-
-const Title = styled.div`
-  font-size: 2em;
-  padding-bottom: 1em;
-`;

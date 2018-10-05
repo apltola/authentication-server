@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import styled from 'styled-components';
 
+import '../styles/sass/components/App.scss';
 import Header from './Header';
 import Home from './Home';
 
@@ -42,12 +43,16 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route component={Header} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/demo" component={LoadableDemoPage} />
-            <Route component={LoadableNotFoundPage}/>
-          </Switch>
+          <Header />
+          <div className="app">
+            <div className="content">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/demo" component={LoadableDemoPage} />
+                <Route component={LoadableNotFoundPage} />
+              </Switch>
+            </div>
+          </div>
         </div>
       </Router>
     )

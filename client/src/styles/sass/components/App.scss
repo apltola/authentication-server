@@ -1,0 +1,11 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .content {
+    flex: 1;
+    max-width: 1200px;
+  }
+}

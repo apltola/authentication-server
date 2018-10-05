@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  background: #fff;
+  padding: 2em 1em;
+  margin-bottom: 3em;
+  align-items: center;
+
+  .brand {
+    a {
+      display: inline-block;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 250ms;
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 2px;
+        display: block;
+        background: #252527;
+        transition: all 250ms;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .auth-container {
+    margin-left: auto;
+  }
+}
