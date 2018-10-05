@@ -7,7 +7,7 @@ export default class Header extends Component {
     return (
       <div>
         <h1>
-        <StyledLink to="/">REACT APP WITH WEBPACK 4</StyledLink>
+        <StyledLink to="/">AUTHENTICATION BOILERPLATE</StyledLink>
         </h1>
       </div>
     )
