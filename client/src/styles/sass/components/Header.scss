@@ -1,4 +1,4 @@
-@import '../helpers/mixins.scss';
+@import '../helpers/all.scss';
 
 .header {
   position: relative;
@@ -61,44 +61,53 @@
       .selection {
         position: absolute;
         right: 0;
-        margin-right: -1px;
         height: 0;
-        width: 20em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
         overflow: hidden;
         background: #fff;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         transition: all 200ms;
         @include xs {
-          width: 70vw;
           right: 50%;
           transform: translateX(50%);
         }        
 
         a button {
           margin: 1em 0.5em;
-          padding: 0.2em 0.5em;
+          padding: 0.3em 0.5em;
           border-radius: 0;
           box-shadow: none;
           color: transparent;
           cursor: pointer;
           transition: all 200ms;
-        }
 
-        a button.google-button {
           .btn-content {
             display: flex;
             flex-flow: row nowrap;
             align-content: center;
-
+  
             .btn-icon {
-              height: 30px;
+              background: #ffffff;
             }
             
             .btn-txt {
-              font-size: 1.5em;
+              font-size: 1.3em;
               padding-left: 0.5em;
               white-space: nowrap;
             }
+          }
+        }
+        
+        a button.google-button {
+          background: $googleRed;
+          border: 1px solid $googleRed;
+          color: #ffffff;
+          border-radius: 5px;
+          
+          .btn-icon {
+            border-radius: 5px;
+            height: 30px;
           }
         }
       }
@@ -107,10 +116,6 @@
         
         .selection {
           height: 10em;
-        }
-
-        a button {
-          color: rgba(0,0,0,.7);
         }
       }
     }

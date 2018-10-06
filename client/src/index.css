@@ -17,16 +17,16 @@ body {
 	/* color: #252527; */
 	color: rgba(0,0,0,.7);
   font-family:
-	-apple-system,
-	sans-serif,
-	BlinkMacSystemFont,
-	'Segoe UI',
-	Roboto,
-	Helvetica,
-	Arial,
-	'Apple Color Emoji',
-	'Segoe UI Emoji',
-	'Segoe UI Symbol';
+		-apple-system,
+		sans-serif,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
 }
 
 a {
@@ -54,7 +54,9 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-	-webkit-appearance: button;
+	color: rgba(0,0,0,.7);
+	cursor: pointer;
+	-webkit-appearance: none;
 }
 
 [type='search']::-webkit-search-decoration {
