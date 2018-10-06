@@ -18,22 +18,36 @@
 
   .brand {
     a {
+      position: relative;
       display: inline-block;
       font-weight: bold;
       text-decoration: none;
       transition: all 250ms;
 
       &::after {
+        display: inline-block;
+        position: absolute;
+        bottom: -5px; right: 50%;
         content: '';
-        width: 0;
         height: 2px;
-        display: block;
+        width: 0;
+        background: #252527;
+        transition: all 250ms;
+      }
+      
+      &::before {
+        display: inline-block;
+        position: absolute;
+        bottom: -5px; left: 50%;
+        content: '';
+        height: 2px;
+        width: 0;
         background: #252527;
         transition: all 250ms;
       }
 
-      &:hover::after {
-        width: 100%;
+      &:hover::after, &:hover::before {
+        width: 50%;
       }
     }
   }
@@ -107,7 +121,7 @@
           color: $buttonWhite;
           border-radius: 5px;
 
-          &:active {
+          &:hover, &:active {
             background: $googleRed_active;
             border: 1px solid $googleRed_active;
             color: $buttonWhite_active;
