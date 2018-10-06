@@ -10,9 +10,6 @@ export default class Home extends Component {
           hello <span>👋</span>
         </div>
         <div>
-          <a href="/auth/google">sign up with google</a>
-        </div>
-        <div>
           <Link to="/demo">link to demo page</Link>
         </div>
         <div>

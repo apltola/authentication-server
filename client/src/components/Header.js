@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import googleIcon from '../styles/images/icon_google.png';
 import '../styles/sass/components/Header.scss';
 
-
 export default class Header extends Component {
+
+  getGoogleBtn(type) {
+    return <a href="/auth/google">
+      <button className="google-button">
+        <div className="btn-content">
+          <img className="btn-icon" src={googleIcon} alt="icon" />
+          <span className="btn-txt">{`${type} with Google`}</span>
+        </div>
+      </button>
+    </a>
+  }
 
   render() {
     return <div className="header">
@@ -17,12 +28,7 @@ export default class Header extends Component {
             sign in
           </div>
           <div className="selection">
-            <a href="https://www.npmjs.com/" target="_blank">
-              <button className="google-button">
-                
-                <span className="btn-txt">sign in with Google</span>
-              </button>
-            </a>
+            {this.getGoogleBtn('login')}
           </div>
         </div>
         <div className="separator">
@@ -33,11 +39,7 @@ export default class Header extends Component {
             register
           </div>
           <div className="selection">
-            <a href="https://www.npmjs.com/" target="_blank">
-              <button className="google-button">
-                sign up with Google
-              </button>
-            </a>
+            {this.getGoogleBtn('sign up')}
           </div>
         </div>
       </div>
