@@ -30,7 +30,15 @@ passport.use(new GoogleStrategy(
       return done(null, existingUser);
     }
 
-    const newUser = await new User({ googleId: profile.id }).save(); //new User() creates a new model instance and saves it to mongo
+    const newUser = await new User({
+      googleId: profile.id,
+      displayName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      email: profile.emails[0].value,
+      imageUrl: profile.photos[0].value
+    }).save(); //new User() creates a new model instance and saves it to mongo
+
     done(null, newUser);
   }
 ));

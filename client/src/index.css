@@ -32,6 +32,16 @@ body {
 a {
 	/* color: #252527; */
 	color: rgba(0,0,0,.7);
+	text-decoration: none;
+}
+
+
+a:not(.link-button):hover {
+	opacity: 0.8;
+}
+
+a:not(.link-button) {
+	transition: all 250ms;
 }
 
 b,
@@ -61,4 +71,10 @@ button,
 
 [type='search']::-webkit-search-decoration {
 	-webkit-appearance: none;
+}
+
+.no-focus-outline a:focus,
+.no-focus-outline input:focus,
+.no-focus-outline button:focus {
+  outline: none;
 }

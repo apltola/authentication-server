@@ -1,0 +1,36 @@
+.user-page {
+
+  .page-title {
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 1.5em;
+  }
+
+  .user-card-container {
+    display: flex;
+    justify-content: center;
+    
+    .user-card {
+      background: #fff;
+      padding: 1.5em;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+
+      .card-title {
+        font-weight: bold;
+        padding-bottom: 0.5em;
+        font-size: 1.2em;
+      }
+    }
+
+    .user-detail-row {
+      display: flex;
+      align-items: center;
+      padding: 0.5em 0;
+  
+      .user-img {
+        border-radius: 100%;
+        margin-left: 0.5em;
+      }
+    }
+  }
+}

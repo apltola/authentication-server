@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import googleIcon from '../styles/images/icon_google.png';
 import '../styles/sass/components/Header.scss';
 
-export default class Header extends Component {
+class Header extends Component {
 
-  getGoogleBtn(type) {
-    return <a href="/auth/google">
+  getGoogleButton(type) {
+    return <a href="/auth/google" className="link-button">
       <button className="google-button">
         <div className="btn-content">
           <img className="btn-icon" src={googleIcon} alt="icon" />
@@ -17,32 +17,48 @@ export default class Header extends Component {
     </a>
   }
 
+  getAuthContainer() {
+    switch(this.props.auth) {
+      case null: return null;
+
+      case false: return <div className="auth-container">
+        <div className="sign-in-container">
+          <div className="title">login</div>
+          <div className="selection">
+            {this.getGoogleButton('login')}
+          </div>
+        </div>
+        <div className="separator">/</div>
+        <div className="register-container">
+          <div className="title">register</div>
+          <div className="selection">
+            {this.getGoogleButton('sign up')}
+          </div>
+        </div>
+      </div>
+
+      default: return <div className="auth-container">
+        <div className="logout">
+          <strong><a href="/api/logout">logout</a></strong>
+        </div>
+      </div>
+    }
+  }
+
   render() {
+    const brandLink = this.props.auth ? '/user' : '/';
+
     return <div className="header">
       <div className="brand">
-        <Link to="/">AUTHENTICATION BOILERPLATE</Link>
+        <Link to={brandLink}>AUTHENTICATION BOILERPLATE</Link>
       </div>
-      <div className="auth-container">
-        <div className="sign-in-container">
-          <div className="title">
-            sign in
-          </div>
-          <div className="selection">
-            {this.getGoogleBtn('login')}
-          </div>
-        </div>
-        <div className="separator">
-          /
-        </div>
-        <div className="register-container">
-          <div className="title">
-            register
-          </div>
-          <div className="selection">
-            {this.getGoogleBtn('sign up')}
-          </div>
-        </div>
-      </div>
+      {this.getAuthContainer()}
     </div>
   }
 }
+
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Header);

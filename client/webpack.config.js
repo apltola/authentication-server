@@ -2,11 +2,9 @@ const buildValidations = require('./build-utils/build-validations');
 const commonConfig = require('./build-utils/webpack.common');
 const webpackMerge = require('webpack-merge');
 
-const addons = (addonsArg) => {
-  
-  // Normalize array of addons (flatten)
-  let addons = [...[addonsArg]] 
-    .filter(Boolean); // If addons is undefined, filter it out
+const addons = addonsArg => {
+  // Flatten array of addons
+  let addons = [...[addonsArg]].filter(Boolean); // If addons is undefined, filter it out
 
   return addons.map(addonName =>
     require(`./build-utils/addons/webpack.${addonName}.js`)

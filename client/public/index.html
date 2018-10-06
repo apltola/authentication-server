@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <title>authentication boilerplate</title>
 
   <style>
@@ -21,13 +20,13 @@
 
   <script>
     (function() {
-      if( sessionStorage.fontsLoadedFoutWithClass ) {
+      if(sessionStorage.fontsLoadedFoutWithClass) {
         document.documentElement.className += " fonts-loaded";
         return;
       }
-      if( "fonts" in document ) {
+      if("fonts" in document) {
         Promise.all([
-          document.fonts.load("1em Roboto"),
+          document.fonts.load("1em Roboto")
         ]).then(function () {
           document.documentElement.className += " fonts-loaded";
           sessionStorage.fontsLoadedFoutWithClass = true;
@@ -36,8 +35,18 @@
     })();
   </script>
 </head>
-
 <body>
   <div id="root"></div>
+
+  <script>
+    // Listen to tab events to enable outlines (accessibility improvement)
+    document.documentElement.className += " no-focus-outline";
+    document.body.addEventListener('keyup', function(e) {
+      if (e.which === 9) /* tab */ {
+        console.log(document.documentElement.classList);
+        document.documentElement.classList.remove('no-focus-outline');
+      }
+    });
+  </script>
 </body>
 </html>

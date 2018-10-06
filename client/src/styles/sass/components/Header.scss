@@ -88,13 +88,13 @@
             align-content: center;
   
             .btn-icon {
-              background: #ffffff;
+              background: $buttonWhite;
             }
             
             .btn-txt {
               display: flex;
               align-items: center;
-              font-size: 1.3em;
+              font-size: 1.2em;
               padding-left: 0.5em;
               white-space: nowrap;
             }
@@ -104,8 +104,18 @@
         a button.google-button {
           background: $googleRed;
           border: 1px solid $googleRed;
-          color: #ffffff;
+          color: $buttonWhite;
           border-radius: 5px;
+
+          &:active {
+            background: $googleRed_active;
+            border: 1px solid $googleRed_active;
+            color: $buttonWhite_active;
+
+            .btn-icon {
+              background: $buttonWhite_active;
+            }
+          }
 
           .btn-icon {
             border-radius: 5px;
@@ -115,7 +125,6 @@
       }
 
       &:hover {
-        
         .selection {
           height: 10em;
         }

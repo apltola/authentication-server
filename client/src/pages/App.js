@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-import styled from 'styled-components';
 
 import '../styles/sass/components/App.scss';
-import Header from './Header';
-import Home from './Home';
+import { fetchUser } from '../actions';
+import Header from '../components/Header';
+import LandingPage from './LandingPage';
+import UserPage from './UserPage';
 
 const Loading = props => {
   if (props.error) {
-    return <LoadingContainer>
-      Error! <button onClick={ props.retry }>Retry!</button>
-    </LoadingContainer>
+    return <div style={{textAlign: 'center', fontSize: '3em'}}>
+      Shit, error! <button onClick={ props.retry }>Retry!</button>
+    </div>
   }
 
   else if (props.timedOut) {
-    return <LoadingContainer>This sure is taking a long time... <span>🤨</span></LoadingContainer>
+    return <div style={{textAlign: 'center', fontSize: '3em'}}>
+      This sure is taking a long time... <span>🤨</span>
+    </div>
   }
 
   else if (props.pastDelay) {
-    return <LoadingContainer>Loading...</LoadingContainer>
+    return <div style={{textAlign: 'center', fontSize: '3em'}}>
+      Loading...
+    </div>
   }
 
   else return null;
 }
-
-const LoadableDemoPage = Loadable({
-  loader: () => import('./Demo'),
-  loading: Loading,
-  delay: 1000
-});
 
 const LoadableNotFoundPage = Loadable({
   loader: () => import('./NotFound'),
@@ -39,6 +39,10 @@ const LoadableNotFoundPage = Loadable({
 });
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <Router>
@@ -47,8 +51,8 @@ class App extends Component {
           <div className="app">
             <div className="content">
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/demo" component={LoadableDemoPage} />
+                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/user" component={UserPage} />
                 <Route component={LoadableNotFoundPage} />
               </Switch>
             </div>
@@ -59,9 +63,4 @@ class App extends Component {
   }
 }
 
-const LoadingContainer = styled.div`
-  text-align: center;
-  font-size: 3em;
-`;
-
-export default hot(module)(App);
+export default connect(null, { fetchUser })(hot(module)(App));
