@@ -14,7 +14,8 @@ body {
 	padding: 0;
 	background: #f7f7f7;
   min-height: 100vh;
-	color: #252527;
+	/* color: #252527; */
+	color: rgba(0,0,0,.7);
   font-family:
 	-apple-system,
 	sans-serif,
@@ -29,7 +30,8 @@ body {
 }
 
 a {
-	color: #252527;
+	/* color: #252527; */
+	color: rgba(0,0,0,.7);
 }
 
 b,

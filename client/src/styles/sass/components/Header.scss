@@ -1,10 +1,20 @@
+@import '../helpers/mixins.scss';
+
 .header {
+  position: relative;
   display: flex;
   flex-flow: row wrap;
   background: #fff;
-  padding: 2em 1em;
+  padding: 3em;
   margin-bottom: 3em;
   align-items: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  @include xs {
+    flex-flow: column;
+    align-content: center;
+    padding: 2em 0.5em;
+  }
 
   .brand {
     a {
@@ -29,6 +39,68 @@
   }
 
   .auth-container {
-    margin-left: auto;
+    margin-top: 1em;
+
+    @include med {
+      margin-top: 0;
+      margin-left: auto;
+    }
+    
+    .auth-item {
+      position: relative;
+      display: inline-block;
+
+      .title {
+        cursor: pointer;
+        padding: 0.2em;
+        font-weight: bolder;
+      }
+
+      .selection {
+        position: absolute;
+        right: 0;
+        height: 0;
+        width: 13em;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition: all 200ms;
+        @include xs {
+          right: 50%;
+          transform: translateX(50%);
+        }        
+
+        a button {
+          margin: 1em 0.5em;
+          color: transparent;
+          cursor: pointer;
+          transition: all 200ms;
+        }
+
+        a button.google-button {
+          color: red;
+        }
+      }
+
+      &:hover {
+        .selection {
+          height: 10em;
+        }
+
+        a button {
+          color: rgba(0,0,0,.7);
+        }
+      }
+    }
+    
+    .separator {
+      display: inline-block;
+      margin: 0 0.5em;
+      font-weight: bolder;
+    }
+    
+    .sign-in-container, .register-container {
+      @extend .auth-item;
+    }
   }
 }
