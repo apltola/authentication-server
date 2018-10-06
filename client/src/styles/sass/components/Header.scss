@@ -16,42 +16,6 @@
     padding: 2em 0.5em;
   }
 
-  .brand {
-    a {
-      position: relative;
-      display: inline-block;
-      font-weight: bold;
-      text-decoration: none;
-      transition: all 250ms;
-
-      &::after {
-        display: inline-block;
-        position: absolute;
-        bottom: -5px; right: 50%;
-        content: '';
-        height: 2px;
-        width: 0;
-        background: #252527;
-        transition: all 250ms;
-      }
-      
-      &::before {
-        display: inline-block;
-        position: absolute;
-        bottom: -5px; left: 50%;
-        content: '';
-        height: 2px;
-        width: 0;
-        background: #252527;
-        transition: all 250ms;
-      }
-
-      &:hover::after, &:hover::before {
-        width: 50%;
-      }
-    }
-  }
-
   .auth-container {
     margin-top: 1em;
 
