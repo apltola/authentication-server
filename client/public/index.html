@@ -4,8 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>authentication boilerplate</title>
+
+  <style>
+    @font-face {
+      font-family: Roboto;
+      src: url('../src/styles/fonts/Roboto-Regular.woff2') format('woff2'),
+          url('../src/styles/fonts/Roboto-Regular.woff') format('woff');
+    }
+
+    .fonts-loaded .google-button {
+      font-family: Roboto, sans-serif;
+    }
+  </style>
+
+  <script>
+    (function() {
+      if( sessionStorage.fontsLoadedFoutWithClass ) {
+        document.documentElement.className += " fonts-loaded";
+        return;
+      }
+      if( "fonts" in document ) {
+        Promise.all([
+          document.fonts.load("1em Roboto"),
+        ]).then(function () {
+          document.documentElement.className += " fonts-loaded";
+          sessionStorage.fontsLoadedFoutWithClass = true;
+        });
+      }
+    })();
+  </script>
 </head>
+
 <body>
   <div id="root"></div>
 </body>

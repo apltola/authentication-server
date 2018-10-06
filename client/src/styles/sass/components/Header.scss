@@ -1,11 +1,5 @@
 @import '../helpers/all.scss';
 
-@font-face {
-  font-family: Roboto;
-  src: url('../../fonts/Roboto-Regular.woff2') format('woff2'),
-       url('../../fonts/Roboto-Regular.woff') format('woff');
-}
-
 .header {
   position: relative;
   display: flex;
@@ -109,11 +103,10 @@
         
         a button.google-button {
           background: $googleRed;
-          font-family: 'Roboto', sans-serif;
           border: 1px solid $googleRed;
           color: #ffffff;
           border-radius: 5px;
-          
+
           .btn-icon {
             border-radius: 5px;
             height: 30px;
