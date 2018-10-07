@@ -47,7 +47,8 @@ passport.use(new GoogleStrategy(
 passport.use(new FacebookStrategy({
   clientID: '325772617973858',
   clientSecret: 'cb5d91c360d391ef4a954a16b385117d',
-  callbackURL: "/auth/facebook/callback"
+  callbackURL: "https://powerful-tor-65248.herokuapp.com/auth/facebook/callback",
+  proxy: true
 },
 async (accessToken, refreshToken, profile, done) => {
   const newUser = await new User({
