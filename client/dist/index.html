@@ -4,9 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>react-starter</title>
-<link rel="shortcut icon" href="/favicon.ico"><link href="/styles/styles.3.css" rel="stylesheet"></head>
+  <title>authentication boilerplate</title>
+
+  <style>
+    @font-face {
+      font-family: Roboto;
+      src: url('../src/styles/fonts/Roboto-Regular.woff2') format('woff2'),
+          url('../src/styles/fonts/Roboto-Regular.woff') format('woff');
+    }
+
+    .fonts-loaded .google-button {
+      font-family: Roboto, sans-serif;
+    }
+  </style>
+
+  <script>
+    (function() {
+      if(sessionStorage.fontsLoadedFoutWithClass) {
+        document.documentElement.className += " fonts-loaded";
+        return;
+      }
+      if("fonts" in document) {
+        Promise.all([
+          document.fonts.load("1em Roboto")
+        ]).then(function () {
+          document.documentElement.className += " fonts-loaded";
+          sessionStorage.fontsLoadedFoutWithClass = true;
+        });
+      }
+    })();
+  </script>
+<link rel="shortcut icon" href="/favicon.ico"><link href="/styles/styles.2.css" rel="stylesheet"><link href="/styles/styles.app.css" rel="stylesheet"></head>
 <body>
   <div id="root"></div>
-<script type="text/javascript" src="/static/styles.b8b5f7480442f9cb6a23.js"></script><script type="text/javascript" src="/static/app.b8b5f7480442f9cb6a23.js"></script></body>
+
+  <script>
+    // Listen to tab events to enable outlines (accessibility improvement)
+    document.documentElement.className += " no-focus-outline";
+    document.body.addEventListener('keyup', function(e) {
+      if (e.which === 9) /* tab */ {
+        console.log(document.documentElement.classList);
+        document.documentElement.classList.remove('no-focus-outline');
+      }
+    });
+  </script>
+<script type="text/javascript" src="/static/styles.6aba9b87929c1e7665b3.js"></script><script type="text/javascript" src="/static/app.6aba9b87929c1e7665b3.js"></script></body>
 </html>
