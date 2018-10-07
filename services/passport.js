@@ -55,8 +55,8 @@ passport.use(new FacebookStrategy(
     const newUser = await new User({
       facebookId: profile.id,
       displayName: profile.displayName,
-      firstName: 'profile.name.givenName',
-      lastName: 'profile.name.familyName',
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
       email: 'profile.emails[0].value',
       imageUrl: 'profile.photos[0].value'
     }).save();
