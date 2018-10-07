@@ -44,22 +44,23 @@ passport.use(new GoogleStrategy(
   }
 ));
 
-passport.use(new FacebookStrategy({
-  clientID: '325772617973858',
-  clientSecret: 'cb5d91c360d391ef4a954a16b385117d',
-  callbackURL: "https://powerful-tor-65248.herokuapp.com/auth/facebook/callback",
-  proxy: true
-},
-async (accessToken, refreshToken, profile, done) => {
-  console.log({profile});
+passport.use(new FacebookStrategy(
+  {
+    clientID: keys.facebookAppID,
+    clientSecret: keys.facebookAppSecret,
+    callbackURL: "https://powerful-tor-65248.herokuapp.com/auth/facebook/callback",
+    proxy: true
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    const newUser = await new User({
+      facebookId: profile.id,
+      displayName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      email: profile.emails[0].value,
+      imageUrl: profile.photos[0].value
+    }).save();
 
-  const newUser = await new User({
-    facebookId: profile.id,
-    displayName: 'facebook testi',
-    firstName: 'facebook',
-    lastName: 'testi'
-  }).save();
-
-  done(null, newUser);
-}
+    done(null, newUser);
+  }
 ));
