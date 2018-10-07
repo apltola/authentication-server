@@ -56,6 +56,7 @@ const config = {
     open: true,
     proxy: {
       "/auth/google": { target: 'http://localhost:5000' },
+      "/auth/facebook": { target: 'http://localhost:5000' },
       "/api/*": { target: 'http://localhost:5000' }
     }
   }
