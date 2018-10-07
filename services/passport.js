@@ -52,13 +52,23 @@ passport.use(new FacebookStrategy(
     proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
+    let email = '';
+    if (profile.emails && profile.emails[0]) {
+      email = profile.emails[0].value;
+    }
+
+    let photo = '';
+    if (profile.photos && profile.photos[0]) {
+      photo = profile.photos[0].value;
+    }
+
     const newUser = await new User({
       facebookId: profile.id,
       displayName: profile.displayName,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
-      email: 'profile.emails[0].value',
-      imageUrl: 'profile.photos[0].value'
+      email: email,
+      imageUrl: photo
     }).save();
 
     done(null, newUser);

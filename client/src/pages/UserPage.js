@@ -11,6 +11,10 @@ class UserPage extends Component {
     return Object.keys(user)
       .filter(key => key !== '__v' && key !== '_id')
       .map(key => {
+        if (!user[key]) {
+          return null;
+        }
+
         if (key === 'imageUrl') {
           return <div key={key} className="user-detail-row">
             <span>image: </span><img className="user-img" src={user[key]} alt='user-image' />
