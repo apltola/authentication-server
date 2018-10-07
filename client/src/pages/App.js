@@ -10,31 +10,9 @@ import Header from '../components/Header';
 import LandingPage from './LandingPage';
 import UserPage from './UserPage';
 
-const Loading = props => {
-  if (props.error) {
-    return <div style={{textAlign: 'center', fontSize: '3em'}}>
-      Shit, error! <button onClick={ props.retry }>Retry!</button>
-    </div>
-  }
-
-  else if (props.timedOut) {
-    return <div style={{textAlign: 'center', fontSize: '3em'}}>
-      This sure is taking a long time... <span>🤨</span>
-    </div>
-  }
-
-  else if (props.pastDelay) {
-    return <div style={{textAlign: 'center', fontSize: '3em'}}>
-      Loading...
-    </div>
-  }
-
-  else return null;
-}
-
 const LoadableNotFoundPage = Loadable({
   loader: () => import('./NotFound'),
-  loading: Loading,
+  loading: () => <div>LOADING...</div>,
   delay: 1000
 });
 

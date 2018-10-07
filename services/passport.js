@@ -52,6 +52,13 @@ passport.use(new FacebookStrategy(
     proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
+    const existingUser = await User.findOne({ facebookId: profile.id });
+
+    if (existingUser) {
+      console.log('user already exists!');
+      return done(null, existingUser);
+    }
+
     let email = '';
     if (profile.emails && profile.emails[0]) {
       email = profile.emails[0].value;
