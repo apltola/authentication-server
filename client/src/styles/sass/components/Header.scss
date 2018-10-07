@@ -52,9 +52,10 @@
         }        
 
         a button {
+          display: block;
           margin: 1em 0.5em;
           padding: 0.3em 0.5em;
-          border-radius: 0;
+          border-radius: 5px;
           box-shadow: none;
           color: transparent;
           cursor: pointer;
@@ -67,6 +68,7 @@
   
             .btn-icon {
               background: $buttonWhite;
+              height: 30px;
             }
             
             .btn-txt {
@@ -83,7 +85,6 @@
           background: $googleRed;
           border: 1px solid $googleRed;
           color: $buttonWhite;
-          border-radius: 5px;
 
           &:hover, &:active {
             background: $googleRed_active;
@@ -97,7 +98,22 @@
 
           .btn-icon {
             border-radius: 5px;
-            height: 30px;
+          }
+        }
+
+        a button.facebook-button {
+          background: $facebookBlue;
+          border: 1px solid $facebookBlue;
+          color: $buttonWhite;
+
+          &:hover, &:active {
+            background: $facebookBlue_active;
+            border: 1px solid $facebookBlue_active;
+            color: $buttonWhite_active;
+
+            .btn-icon {
+              background: $buttonWhite_active;
+            }
           }
         }
       }

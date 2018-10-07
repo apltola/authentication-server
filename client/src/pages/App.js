@@ -13,7 +13,7 @@ import UserPage from './UserPage';
 const LoadableNotFoundPage = Loadable({
   loader: () => import('./NotFound'),
   loading: () => <div>LOADING...</div>,
-  delay: 1000
+  delay: 300
 });
 
 class App extends Component {

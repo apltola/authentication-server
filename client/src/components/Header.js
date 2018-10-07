@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import googleIcon from '../styles/images/icon_google.png';
+import facebookIcon from '../styles/images/icon_facebook.png';
 import '../styles/sass/components/Header.scss';
 
 class Header extends Component {
@@ -17,6 +18,17 @@ class Header extends Component {
     </a>
   }
 
+  getFacebookButton() {
+    return <a href="/auth/facebook" className="link-button">
+      <button className="facebook-button">
+        <div className="btn-content">
+          <img className="btn-icon" src={facebookIcon} alt="icon" />
+          <span className="btn-txt">login with Facebook</span>
+        </div>
+      </button>
+    </a>
+  }
+
   getAuthContainer() {
     switch(this.props.auth) {
       case null: return null;
@@ -26,6 +38,7 @@ class Header extends Component {
           <div className="title">login</div>
           <div className="selection">
             {this.getGoogleButton('login')}
+            {this.getFacebookButton()}
           </div>
         </div>
         <div className="separator">/</div>
@@ -33,9 +46,7 @@ class Header extends Component {
           <div className="title">register</div>
           <div className="selection">
             {this.getGoogleButton('sign up')}
-            <div>
-              <a href="/auth/facebook">facebook O_o</a>
-            </div>
+            {this.getFacebookButton()}
           </div>
         </div>
       </div>
