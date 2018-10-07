@@ -51,6 +51,8 @@ passport.use(new FacebookStrategy({
   proxy: true
 },
 async (accessToken, refreshToken, profile, done) => {
+  console.log({profile});
+
   const newUser = await new User({
     facebookId: profile.id,
     displayName: 'facebook testi',
