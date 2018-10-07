@@ -5,9 +5,13 @@ const path = require('path');
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
 require('./models/User');
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
-require('./services/passport');
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true }).then(() => {
+  console.log('CONNECTED TO MONGO!')
+}).catch(err => {
+  console.log('MONGO CONNECTION ERROR: ', err);
+});
 
+require('./services/passport');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 app.use(cookieSession({ //cookieSession middleware handles cookie stuff. it extracts data from the browser cookie and assigns it to req.session. This happens before deserializeUser so passport is not looking at the cookie, it is looking at req.session.
