@@ -7,6 +7,12 @@ module.exports = function(app) {
     res.redirect('/user');
   })
   
+  app.get('/auth/facebook', passport.authenticate('facebook'));
+  
+  app.get('/auth/facebook/callback', passport.authenticate('facebook'), (req, res) => {
+    res.redirect('/user');
+  })
+  
   app.get('/api/logout', (req, res) => {
     req.logout(); //logout() is added by passport
     res.redirect('/');

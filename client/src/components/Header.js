@@ -33,6 +33,9 @@ class Header extends Component {
           <div className="title">register</div>
           <div className="selection">
             {this.getGoogleButton('sign up')}
+            <div>
+              <a href="/auth/facebook">facebook O_o</a>
+            </div>
           </div>
         </div>
       </div>
