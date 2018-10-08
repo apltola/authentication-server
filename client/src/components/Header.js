@@ -39,6 +39,9 @@ class Header extends Component {
           <div className="selection">
             {this.getGoogleButton('login')}
             {this.getFacebookButton()}
+            <div>
+              <a href="/auth/twitter">let's try twitter...</a>
+            </div>
           </div>
         </div>
         <div className="separator">/</div>

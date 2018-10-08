@@ -2,14 +2,17 @@ const passport = require('passport'); //this has nothing to do with the stuff in
 
 module.exports = function(app) {
   app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-  
   app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
     res.redirect('/user');
   })
   
   app.get('/auth/facebook', passport.authenticate('facebook'));
-  
   app.get('/auth/facebook/callback', passport.authenticate('facebook'), (req, res) => {
+    res.redirect('/user');
+  })
+
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/'}), (req, res) => {
     res.redirect('/user');
   })
   

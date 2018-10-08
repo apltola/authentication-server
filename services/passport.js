@@ -2,6 +2,7 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
@@ -32,6 +33,7 @@ passport.use(new GoogleStrategy(
     }
 
     const newUser = await new User({
+      provider: profile.provider,
       googleId: profile.id,
       displayName: profile.displayName,
       firstName: profile.name.givenName,
@@ -70,6 +72,7 @@ passport.use(new FacebookStrategy(
     }
 
     const newUser = await new User({
+      provider: profile.provider,
       facebookId: profile.id,
       displayName: profile.displayName,
       firstName: profile.name.givenName,
@@ -81,3 +84,30 @@ passport.use(new FacebookStrategy(
     done(null, newUser);
   }
 ));
+
+passport.use(new TwitterStrategy(
+  {
+    consumerKey: keys.twitterAPIKey,
+    consumerSecret: keys.twitterAPISecret,
+    callbackURL: '/auth/twitter/callback',
+    proxy: true
+  },
+  async (token, tokenSecret, profile, done) => {
+    const existingUser = await User.findOne({ twitterId: profile.id });
+
+    if (existingUser) {
+      console.log('user already exists!');
+      return done(null, existingUser);
+    }
+
+    const newUser = await new User({
+      provider: profile.provider,
+      twitterId: profile.id,
+      username: profile.username,
+      displayName: profile.displayName,
+      imageUrl: profile.photos[0].value
+    }).save();
+
+    done(null, newUser);
+  }
+))
