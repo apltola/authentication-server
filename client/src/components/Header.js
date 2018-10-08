@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import googleIcon from '../styles/images/icon_google.png';
 import facebookIcon from '../styles/images/icon_facebook.png';
+import twitterIcon from '../styles/images/icon_twitter.png';
 import '../styles/sass/components/Header.scss';
 
 class Header extends Component {
 
-  getGoogleButton(type) {
+  getGoogleButton() {
     return <a href="/auth/google" className="link-button">
       <button className="google-button">
         <div className="btn-content">
           <img className="btn-icon" src={googleIcon} alt="icon" />
-          <span className="btn-txt">{`${type} with Google`}</span>
+          <span className="btn-txt">continue with Google</span>
         </div>
       </button>
     </a>
@@ -23,7 +24,18 @@ class Header extends Component {
       <button className="facebook-button">
         <div className="btn-content">
           <img className="btn-icon" src={facebookIcon} alt="icon" />
-          <span className="btn-txt">login with Facebook</span>
+          <span className="btn-txt">continue with Facebook</span>
+        </div>
+      </button>
+    </a>
+  }
+
+  getTwitterbutton() {
+    return <a href="/auth/twitter" className="link-button">
+      <button className="twitter-button">
+        <div className="btn-content">
+          <img className="btn-icon" src={twitterIcon} alt="icon" />
+          <span className="btn-txt">continue with Twitter</span>
         </div>
       </button>
     </a>
@@ -35,21 +47,11 @@ class Header extends Component {
 
       case false: return <div className="auth-container">
         <div className="sign-in-container">
-          <div className="title">login</div>
+          <div className="title">login / sign up</div>
           <div className="selection">
-            {this.getGoogleButton('login')}
+            {this.getGoogleButton()}
             {this.getFacebookButton()}
-            <div>
-              <a href="/auth/twitter">let's try twitter...</a>
-            </div>
-          </div>
-        </div>
-        <div className="separator">/</div>
-        <div className="register-container">
-          <div className="title">register</div>
-          <div className="selection">
-            {this.getGoogleButton('sign up')}
-            {this.getFacebookButton()}
+            {this.getTwitterbutton()}
           </div>
         </div>
       </div>
