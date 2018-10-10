@@ -29,6 +29,9 @@ const config = {
               camelCase: true,
               sourceMap: true
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       },
@@ -58,6 +61,7 @@ const config = {
       "/auth/google": { target: 'http://localhost:5000' },
       "/auth/facebook": { target: 'http://localhost:5000' },
       "/auth/twitter": { target: 'http://localhost:5000' },
+      "/auth/github": { target: 'http://localhost:5000' },
       "/api/*": { target: 'http://localhost:5000' }
     }
   }

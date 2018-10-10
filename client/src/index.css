@@ -73,3 +73,9 @@ button,
 .no-focus-outline button:focus {
   outline: none;
 }
+
+h1 {
+	display: flex;
+	flex-flow: row nowrap;
+	transition: all 200ms;
+}

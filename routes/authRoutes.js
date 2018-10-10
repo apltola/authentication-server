@@ -15,6 +15,11 @@ module.exports = function(app) {
   app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/'}), (req, res) => {
     res.redirect('/user');
   })
+
+  app.get('/auth/github', passport.authenticate('github'));
+  app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/'}), (req, res) => {
+    res.redirect('/user');
+  })
   
   app.get('/api/logout', (req, res) => {
     req.logout(); //logout() is added by passport

@@ -3,6 +3,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const GithubStrategy = require('passport-github').Strategy;
 
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
@@ -111,3 +112,30 @@ passport.use(new TwitterStrategy(
     done(null, newUser);
   }
 ))
+
+passport.use(new GithubStrategy(
+  {
+    clientID: keys.githubClientID,
+    clientSecret: keys.githubClientSecret,
+    callbackURL: 'https://powerful-tor-65248.herokuapp.com/auth/github/callback',
+    proxy: true
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    console.log({ profile });
+    const existingUser = await User.findOne({ githubId: profile.id });
+
+    if (existingUser) {
+      console.log('user already exists!');
+      return done(null, existingUser);
+    }
+
+    const newUser = await new User({
+      provider: profile.provider,
+      displayName: profile.displayName,
+      username: profile.username,
+      imageUrl: profile.photos[0].value
+    }).save();
+
+    done(null, newUser);
+  }
+));

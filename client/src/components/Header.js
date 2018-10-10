@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import googleIcon from '../styles/images/icon_google.png';
 import facebookIcon from '../styles/images/icon_facebook.png';
 import twitterIcon from '../styles/images/icon_twitter.png';
+import githubIcon from '../styles/images/icon_github.png';
 import '../styles/sass/components/Header.scss';
 
 class Header extends Component {
 
-  getGoogleButton() {
+  GoogleButton() {
     return <a href="/auth/google" className="link-button">
       <button className="google-button">
         <div className="btn-content">
@@ -19,7 +20,7 @@ class Header extends Component {
     </a>
   }
 
-  getFacebookButton() {
+  FacebookButton() {
     return <a href="/auth/facebook" className="link-button">
       <button className="facebook-button">
         <div className="btn-content">
@@ -30,12 +31,23 @@ class Header extends Component {
     </a>
   }
 
-  getTwitterbutton() {
+  Twitterbutton() {
     return <a href="/auth/twitter" className="link-button">
       <button className="twitter-button">
         <div className="btn-content">
           <img className="btn-icon" src={twitterIcon} alt="icon" />
           <span className="btn-txt">continue with Twitter</span>
+        </div>
+      </button>
+    </a>
+  }
+
+  GithubButton() {
+    return <a href="/auth/github" className="link-button">
+      <button className="github-button">
+        <div className="btn-content">
+          <img className="btn-icon" src={githubIcon} alt="icon" />
+          <span className="btn-txt">continue with Github</span>
         </div>
       </button>
     </a>
@@ -49,9 +61,10 @@ class Header extends Component {
         <div className="sign-in-container">
           <div className="title">login / sign up</div>
           <div className="selection">
-            {this.getGoogleButton()}
-            {this.getFacebookButton()}
-            {this.getTwitterbutton()}
+            {this.GoogleButton()}
+            {this.FacebookButton()}
+            {this.Twitterbutton()}
+            {this.GithubButton()}
           </div>
         </div>
       </div>

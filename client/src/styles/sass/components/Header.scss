@@ -29,6 +29,12 @@
       display: inline-block;
       transition: background 200ms;
 
+      &:hover {
+        .selection {
+          height: 16.5em;
+        }
+      }
+
       .title {
         cursor: pointer;
         padding: 0.2em;
@@ -55,20 +61,21 @@
           display: block;
           margin: 0.9em 0.5em;
           padding: 0.3em 0.7em;
-          border-radius: 5px;
+          border-radius: 0;
           box-shadow: none;
           color: transparent;
           cursor: pointer;
           transition: all 200ms;
-
+          
           .btn-content {
             display: flex;
             flex-flow: row nowrap;
             align-content: center;
-  
+            
             .btn-icon {
               background: $buttonWhite;
               height: 30px;
+              transition: all 200ms;
             }
             
             .btn-txt {
@@ -138,11 +145,26 @@
             border: 1px solid $buttonWhite;
           }
         }
-      }
 
-      &:hover {
-        .selection {
-          height: 13em;
+        a button.github-button {
+          background: $githubGrey;
+          border: 1px solid $githubGrey;
+          color: $buttonWhite;
+
+          .btn-icon {
+            background: $githubGrey;
+            border-radius: 100%;
+          }
+
+          &:hover, &:active {
+            background: $githubGrey_active;
+            border: 1px solid $githubGrey_active;
+            color: $buttonWhite_active;
+
+            .btn-icon {
+              background: $githubGrey_active;
+            }
+          }
         }
       }
     }
