@@ -29,7 +29,7 @@ body {
 }
 
 a {
-	color: rgba(0,0,0,.7);
+	color: rgba(0, 0, 0, .7);
 	text-decoration: none;
 }
 
@@ -66,10 +66,4 @@ button,
 .no-focus-outline input:focus,
 .no-focus-outline button:focus {
   outline: none;
-}
-
-h1 {
-	display: flex;
-	flex-flow: row nowrap;
-	transition: all 200ms;
 }
