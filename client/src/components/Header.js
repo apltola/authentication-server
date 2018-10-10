@@ -58,7 +58,7 @@ class Header extends Component {
       case null: return null;
 
       case false: return <div className="auth-container">
-        <div className="sign-in-container">
+        <div className="auth-buttons">
           <div className="title">login / sign up</div>
           <div className="selection">
             {this.GoogleButton()}

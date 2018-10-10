@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: row wrap;
   background: #fff;
-  padding: 3em;
+  padding: 2.5em 3em;
   margin-bottom: 3em;
   align-items: center;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -17,14 +17,13 @@
   }
 
   .auth-container {
-    margin-top: 1em;
 
     @include med {
       margin-top: 0;
       margin-left: auto;
     }
     
-    .auth-item {
+    .auth-buttons {
       position: relative;
       display: inline-block;
       transition: background 200ms;
@@ -37,7 +36,7 @@
 
       .title {
         cursor: pointer;
-        padding: 0.2em;
+        padding: 0.5em 0.2em;
         font-weight: bolder;
         transition: color 200ms;
       }
@@ -61,6 +60,7 @@
           display: block;
           margin: 0.9em 0.5em;
           padding: 0.3em 0.7em;
+          width: 250px;
           border-radius: 0;
           box-shadow: none;
           color: transparent;
@@ -167,10 +167,6 @@
           }
         }
       }
-    }
-    
-    .sign-in-container {
-      @extend .auth-item;
     }
   }
 }
