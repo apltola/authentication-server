@@ -12,11 +12,8 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	/* background: #f7f7f7; */
-	/* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); */
 	background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   min-height: 100vh;
-	/* color: #252527; */
 	color: rgba(0,0,0,.7);
   font-family:
 		-apple-system,
@@ -32,12 +29,9 @@ body {
 }
 
 a {
-	/* color: #252527; */
 	color: rgba(0,0,0,.7);
 	text-decoration: none;
 }
-
-
 
 b,
 strong {
