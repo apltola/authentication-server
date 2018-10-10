@@ -13,11 +13,11 @@
   @include xs {
     flex-flow: column;
     align-content: center;
-    padding: 2em 0.5em;
+    padding: 1.5em 0.5em;
   }
 
   .auth-container {
-
+    margin-top: 0.5em;
     @include med {
       margin-top: 0;
       margin-left: auto;
@@ -39,6 +39,9 @@
         padding: 0.5em 0.2em;
         font-weight: bolder;
         transition: color 200ms;
+        @include xs {
+          padding-bottom: 0;
+        }
       }
 
       .selection {
@@ -54,6 +57,7 @@
         @include xs {
           right: 50%;
           transform: translateX(50%);
+          margin-top: 2em;
         }
 
         a button {
