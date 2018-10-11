@@ -29,12 +29,12 @@
       transition: background 200ms;
 
       &:hover {
-        .selection {
-          height: 16.5em;
+        .auth-card {
+          height: 31em;
         }
       }
 
-      .title {
+      .auth-title {
         cursor: pointer;
         padding: 0.5em 0.2em;
         font-weight: bolder;
@@ -44,15 +44,15 @@
         }
       }
 
-      .selection {
+      .auth-card {
         position: absolute;
         right: 0;
         height: 0;
-        padding-left: 1.2em;
-        padding-right: 1.2em;
+        padding-left: 2em;
+        padding-right: 2em;
         overflow: hidden;
         background: #fff;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         transition: all 200ms;
         @include xs {
           right: 50%;
@@ -60,9 +60,20 @@
           margin-top: 2em;
         }
 
+        .login-container {
+          height: 29em;
+          overflow: visible;
+          transition: all 200ms;
+
+          &[collapsed="true"] {
+            height: 0;
+            overflow: hidden;
+          }
+        }
+
         a button {
           display: block;
-          margin: 0.8em 0.5em;
+          margin: 0.8em 0;
           padding: 0.3em 0.7em;
           width: 250px;
           border-radius: 0;
@@ -170,7 +181,107 @@
             }
           }
         }
+
+        .login-form {
+          padding-top: 1.5em;
+
+          .login-title {
+            padding-bottom: 0.7em;
+            font-weight: bold;
+          }
+
+          button.login-button {
+            border: 1px solid $font_dark_primary;
+            background: transparent;
+          }
+
+          label {
+            display: block;
+          }
+
+          input {
+            border: 1px solid black;
+            margin-bottom: 0.6em;
+          }
+        }
+
+        .register-trigger-container {
+          padding-top: 1.8em;
+
+          button.register-trigger {
+            @extend .unstyled-button;
+            border-bottom: 1px solid transparent;
+
+            &:hover {
+              border-bottom: 1px solid $font_dark_primary;
+            }
+          }
+        }
+
+        .register-container {
+          height: 0;
+          overflow: hidden;
+          color: transparent;
+          padding-top: 1.5em;
+
+          .register-title {
+            color: transparent;
+          }
+
+          button.cancel-register-button {
+            @extend .unstyled-button;
+            color: transparent;
+            float: right;
+
+            &:hover {
+              border-bottom: 1px solid $font_dark_primary;
+            }
+          }
+
+          .register-form {
+            padding-top: 1em;
+
+            label {
+              display: block;
+              color: transparent;
+            }
+
+            input {
+              margin-bottom: 0.6em;
+            }
+          }
+
+          &[visible="true"] {
+            height: 10em;
+            color: $font_dark_primary;
+            overflow: visible;
+
+            .register-title {
+              font-weight: bold;
+              color: $font_dark_primary;
+            }
+
+            button.cancel-register-button {
+              color: $font_dark_primary;
+            }
+
+            .register-form {
+              label {
+                display: block;
+                color: $font_dark_primary;
+              }
+            }
+          }
+        }
       }
     }
   }
+}
+
+.unstyled-button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
 }

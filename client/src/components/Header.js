@@ -8,6 +8,20 @@ import githubIcon from '../styles/images/icon_github.png';
 import '../styles/sass/components/Header.scss';
 
 class Header extends Component {
+  constructor() {
+    super();
+
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRegisterClick = this.handleRegisterClick.bind(this);
+
+    this.state = {
+      login_username: '',
+      login_password: '',
+      loginDetailsCollapsed: false
+    }
+  }
 
   GoogleButton() {
     return <a href="/auth/google" className="link-button">
@@ -53,18 +67,73 @@ class Header extends Component {
     </a>
   }
 
+  handleUsernameChange(e) {
+    this.setState({ login_username: e.target.value })
+  }
+  
+  handlePasswordChange(e) {
+    this.setState({ login_password: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('state: ', this.state);
+  }
+
+  async handleRegisterClick() {
+    await this.setState(prevState => {
+      return { loginDetailsCollapsed: !prevState.loginDetailsCollapsed }
+    })
+
+    console.log(this.state);
+  }
+
   getAuthContainer() {
     switch(this.props.auth) {
       case null: return null;
 
       case false: return <div className="auth-container">
         <div className="auth-buttons">
-          <div className="title">login / sign up</div>
-          <div className="selection">
-            {this.GoogleButton()}
-            {this.FacebookButton()}
-            {this.Twitterbutton()}
-            {this.GithubButton()}
+          <div className="auth-title">login / sign up</div>
+          <div className="auth-card">
+            <div className="auth-card-container">
+              <div className="login-container" collapsed={`${this.state.loginDetailsCollapsed}`}>
+                {this.GoogleButton()}
+                {this.FacebookButton()}
+                {this.Twitterbutton()}
+                {this.GithubButton()}
+                <form className="login-form" onSubmit={this.handleSubmit}>
+                  <div className="login-title">Login with username</div>
+                  <label htmlFor="login_username">Username</label>
+                  <input onChange={this.handleUsernameChange} value={this.state.username} type='text' name="login_username" required autoComplete="off" />
+                  <label htmlFor="login_password">Password</label>
+                  <input onChange={this.handlePasswordChange} value={this.state.password} type='password' name="login_password" required />
+                  <div>
+                    <button className="login-button" type="submit">Login</button>
+                  </div>
+                </form>
+                <div className="register-trigger-container">
+                  ...Or  <button className="register-trigger" onClick={this.handleRegisterClick}>create account</button>
+                </div>
+              </div>
+              <div className="register-container" visible={`${this.state.loginDetailsCollapsed}`}>
+                <div>
+                  <span className="register-title">Create account</span>
+                  <button className="cancel-register-button" onClick={this.handleRegisterClick}>
+                    cancel
+                  </button>
+                </div>
+                <form className="register-form">
+                  <label htmlFor="register_username">Username</label>
+                  <input type="text" name="register_username" />
+                  <label htmlFor="register_password">Password</label>
+                  <input type="password" name="register_password" />
+                  <label htmlFor="register_confirmPassword">Confirm password</label>
+                  <input type="password" name="register_confirmPassword" />
+                  <button type="submit">Create account</button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -78,11 +147,12 @@ class Header extends Component {
   }
 
   render() {
-    const brandLink = this.props.auth ? '/user' : '/';
+    console.log(this.state.loginDetailsCollapsed);
+    const brandLinkDestination = this.props.auth ? '/user' : '/';
 
     return <div className="header">
       <div className="brand">
-        <Link to={brandLink}>AUTHENTICATION BOILERPLATE</Link>
+        <Link to={brandLinkDestination}>AUTHENTICATION BOILERPLATE</Link>
       </div>
       {this.getAuthContainer()}
     </div>

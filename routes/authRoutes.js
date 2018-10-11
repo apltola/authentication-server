@@ -20,7 +20,12 @@ module.exports = function(app) {
   app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/'}), (req, res) => {
     res.redirect('/user');
   })
-  
+
+  //local register
+  app.get('/api/register', (req, res) => {
+    res.send('REGISTER');
+  });
+
   app.get('/api/logout', (req, res) => {
     req.logout(); //logout() is added by passport
     res.redirect('/');

@@ -16,4 +16,8 @@ const userSchema = new Schema({
   location: String
 });
 
+userSchema.methods.verifyPassword = function() {
+  
+};
+
 mongoose.model('users', userSchema);
