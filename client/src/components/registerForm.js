@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { isEmpty } from '../helpers/helpers';
 import * as Yup from 'yup';
-import '../styles/sass/components/RegisterForm.scss';
+import '../styles/sass/components/AuthForms.scss';
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('invalid email').required('email required!'),
@@ -29,8 +30,6 @@ export default class RegisterForm extends Component {
     } else {
       this.state.passwordMismatch ? this.setState({ passwordMismatch: false }) : null;
     }
-
-
   }
 
   render() {
@@ -43,7 +42,7 @@ export default class RegisterForm extends Component {
           validationSchema={RegisterSchema}
           onSubmit={this.handleSubmit}
         >
-          {({ errors, touched }) => {
+          {({ errors, touched, isSubmitting, dirty, handleReset }) => {
             return <Form className="register-form">
               <div>Email</div>
               <Field name="email" type="email" error={errors.email && touched.email ? 'true' : 'false'} />
@@ -58,10 +57,22 @@ export default class RegisterForm extends Component {
               <div className="error-message" triggered={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'}>{passwordMismatch ? 'your passwords don\'t match!' : errors.password}</div>
 
               <div>Confirm password</div>
-              <Field name="confirmPassword" type="password" error={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'} />
-              <div className="error-message" triggered={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'}>{passwordMismatch ? 'your passwords don\'t match!' : errors.password}</div>
+              <Field name="confirmPassword" type="password" error={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'} />
+              <div className="error-message" triggered={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'}>{passwordMismatch ? 'your passwords don\'t match!' : errors.confirmPassword}</div>
 
-              <button type="submit">create account</button>
+              <div className="register-button-container">
+                <button className="register-submit"
+                  type="submit"
+                  disabled={!isEmpty(errors) || isSubmitting || !dirty}>
+                  submit
+                </button>
+                <button className="register-reset"
+                  type="button"
+                  onClick={handleReset}
+                  disabled={!dirty || isSubmitting}>
+                  reset
+                </button>
+              </div>
             </Form>}}
         </Formik>
       </div>
