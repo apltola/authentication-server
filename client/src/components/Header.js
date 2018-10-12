@@ -5,6 +5,7 @@ import googleIcon from '../styles/images/icon_google.png';
 import facebookIcon from '../styles/images/icon_facebook.png';
 import twitterIcon from '../styles/images/icon_twitter.png';
 import githubIcon from '../styles/images/icon_github.png';
+import RegisterForm from '../components/registerForm';
 import '../styles/sass/components/Header.scss';
 
 class Header extends Component {
@@ -123,15 +124,7 @@ class Header extends Component {
                     cancel
                   </button>
                 </div>
-                <form className="register-form">
-                  <label htmlFor="register_username">Username</label>
-                  <input type="text" name="register_username" />
-                  <label htmlFor="register_password">Password</label>
-                  <input type="password" name="register_password" />
-                  <label htmlFor="register_confirmPassword">Confirm password</label>
-                  <input type="password" name="register_confirmPassword" />
-                  <button type="submit">Create account</button>
-                </form>
+                <RegisterForm />
               </div>
             </div>
           </div>

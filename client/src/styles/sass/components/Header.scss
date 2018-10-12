@@ -48,8 +48,8 @@
         position: absolute;
         right: 0;
         height: 0;
-        padding-left: 2em;
-        padding-right: 2em;
+        padding-left: 3em;
+        padding-right: 3em;
         overflow: hidden;
         background: #fff;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -238,18 +238,17 @@
             }
           }
 
-          .register-form {
-            padding-top: 1em;
+          // .register-form {
+          //   padding-top: 1em;
 
-            label {
-              display: block;
-              color: transparent;
-            }
+          //   label {
+          //     display: block;
+          //     color: transparent;
+          //   }
 
-            input {
-              margin-bottom: 0.6em;
-            }
-          }
+          //   input {
+          //   }
+          // }
 
           &[visible="true"] {
             height: 10em;

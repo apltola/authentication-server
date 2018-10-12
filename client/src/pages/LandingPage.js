@@ -12,7 +12,9 @@ class Home extends Component {
     return (
       <div className="landing-page">
         <div className="title">
-          hello, this is a landing page <span>👋</span>
+          <b>
+            hello, this is a landing page <span>👋</span>
+          </b>
         </div>
       </div>
     )

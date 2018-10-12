@@ -52,7 +52,6 @@
     document.documentElement.className += " no-focus-outline";
     document.body.addEventListener('keyup', function(e) {
       if (e.which === 9) /* tab */ {
-        console.log(document.documentElement.classList);
         document.documentElement.classList.remove('no-focus-outline');
       }
     });

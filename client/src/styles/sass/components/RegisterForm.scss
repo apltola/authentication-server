@@ -1,0 +1,32 @@
+@import '../helpers/all.scss';
+
+.register-form {
+  padding-top: 1em;
+
+  label {
+    display: block;
+    color: transparent;
+  }
+
+  input {
+    border: 1px solid grey;
+    transition: all 300ms;
+
+    &[error="true"] {
+      border: 1px solid $errorRed;
+    }
+  }
+  
+  .error-message {
+    height: 0;
+    color: transparent;
+    margin-bottom: 1em;
+    transition: all 300ms;
+
+    &[triggered="true"] {
+      color: $errorRed;
+      height: 1.5em;
+      margin-bottom: 0;
+    }
+  }
+}
