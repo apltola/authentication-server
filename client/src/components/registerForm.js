@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { setAuth } from '../actions';
-import { isEmpty } from '../helpers/helpers';
+import { isEmpty } from '../tools/helpers';
 import * as Yup from 'yup';
 import axios from 'axios';
 import '../styles/sass/4-components/registerForm.scss';
@@ -105,23 +105,27 @@ class RegisterForm extends Component {
 
               <div>Password</div>
               <Field name="password" type="password" error={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'} />
-              <div className="error-message" triggered={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'}>{passwordMismatch ? 'your passwords don\'t match!' : errors.password}</div>
+              <div className="error-message" triggered={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'}>
+                {passwordMismatch ? 'your passwords don\'t match!' : errors.password}
+              </div>
 
               <div>Confirm password</div>
               <Field name="confirmPassword" type="password" error={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'} />
-              <div className="error-message" triggered={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'}>{passwordMismatch ? 'your passwords don\'t match!' : errors.confirmPassword}</div>
+              <div className="error-message" triggered={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'}>
+                {passwordMismatch ? 'your passwords don\'t match!' : errors.confirmPassword}
+              </div>
 
               <div className="register-button-container">
                 <button className="register-submit"
                   type="submit"
                   disabled={!isEmpty(errors) || !dirty}>
-                  submit
+                  Submit
                 </button>
                 <button className="register-reset"
                   type="button"
                   onClick={handleReset}
                   disabled={!dirty}>
-                  reset
+                  Reset
                 </button>
               </div>
             </Form>}}

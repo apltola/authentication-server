@@ -4,7 +4,7 @@
   padding-top: 1.5em;
 
   .login-title {
-    padding-bottom: 0.7em;
+    padding-bottom: 1em;
     font-weight: bold;
   }
 
@@ -19,6 +19,7 @@
 
   input {
     width: 100%;
+    margin-bottom: 0.8em;
     border: 1px solid $inputBorder;
     background-color: $inputBg_grey;
     transition: all 200ms;

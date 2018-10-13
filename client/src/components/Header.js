@@ -5,20 +5,17 @@ import googleIcon from '../styles/images/icon_google.png';
 import facebookIcon from '../styles/images/icon_facebook.png';
 import twitterIcon from '../styles/images/icon_twitter.png';
 import githubIcon from '../styles/images/icon_github.png';
-import RegisterForm from '../components/registerForm';
+import RegisterForm from '../components/RegisterForm';
 
 import '../styles/sass/4-components/header.scss';
 import '../styles/sass/4-components/loginForm.scss';
+import LoginForm from './LoginForm';
 
 class Header extends Component {
   constructor() {
     super();
 
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRegisterToggle = this.handleRegisterToggle.bind(this);
-
     this.state = {
       login_username: '',
       login_password: '',
@@ -70,25 +67,10 @@ class Header extends Component {
     </a>
   }
 
-  handleUsernameChange(e) {
-    this.setState({ login_username: e.target.value })
-  }
-  
-  handlePasswordChange(e) {
-    this.setState({ login_password: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('state: ', this.state);
-  }
-
-  async handleRegisterToggle() {
-    await this.setState(prevState => {
+  handleRegisterToggle() {
+    this.setState(prevState => {
       return { loginDetailsCollapsed: !prevState.loginDetailsCollapsed }
     })
-
-    console.log(this.state);
   }
 
   getAuthContainer() {
@@ -105,16 +87,7 @@ class Header extends Component {
                 {this.FacebookButton()}
                 {this.Twitterbutton()}
                 {this.GithubButton()}
-                <form className="login-form" onSubmit={this.handleSubmit}>
-                  <div className="login-title">Login with username</div>
-                  <label htmlFor="login_username">Username</label>
-                  <input onChange={this.handleUsernameChange} value={this.state.username} type='text' name="login_username" autoComplete="off" />
-                  <label htmlFor="login_password">Password</label>
-                  <input onChange={this.handlePasswordChange} value={this.state.password} type='password' name="login_password" />
-                  <div>
-                    <button className="btn-primary" type="submit">Login</button>
-                  </div>
-                </form>
+                <LoginForm registerCallback={() => this.props.history.push('/user')} />
                 <div className="register-trigger-container">
                   ...Or  <button className="register-trigger" onClick={this.handleRegisterToggle}>create account</button>
                 </div>
@@ -153,10 +126,9 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth, authError }) {
+function mapStateToProps({ auth }) {
   console.log({auth});
-  console.log({authError});
-  return { auth, authError };
+  return { auth };
 }
 
 export default connect(mapStateToProps)(Header);
