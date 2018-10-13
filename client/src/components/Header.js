@@ -5,11 +5,11 @@ import googleIcon from '../styles/images/icon_google.png';
 import facebookIcon from '../styles/images/icon_facebook.png';
 import twitterIcon from '../styles/images/icon_twitter.png';
 import githubIcon from '../styles/images/icon_github.png';
-import RegisterForm from '../components/RegisterForm';
 
 import '../styles/sass/4-components/header.scss';
 import '../styles/sass/4-components/loginForm.scss';
 import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
 class Header extends Component {
   constructor() {
