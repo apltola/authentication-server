@@ -6,7 +6,9 @@ import facebookIcon from '../styles/images/icon_facebook.png';
 import twitterIcon from '../styles/images/icon_twitter.png';
 import githubIcon from '../styles/images/icon_github.png';
 import RegisterForm from '../components/registerForm';
-import '../styles/sass/components/Header.scss';
+
+import '../styles/sass/4-components/header.scss';
+import '../styles/sass/4-components/loginForm.scss';
 
 class Header extends Component {
   constructor() {
@@ -15,7 +17,7 @@ class Header extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRegisterClick = this.handleRegisterClick.bind(this);
+    this.handleRegisterToggle = this.handleRegisterToggle.bind(this);
 
     this.state = {
       login_username: '',
@@ -81,7 +83,7 @@ class Header extends Component {
     console.log('state: ', this.state);
   }
 
-  async handleRegisterClick() {
+  async handleRegisterToggle() {
     await this.setState(prevState => {
       return { loginDetailsCollapsed: !prevState.loginDetailsCollapsed }
     })
@@ -110,17 +112,17 @@ class Header extends Component {
                   <label htmlFor="login_password">Password</label>
                   <input onChange={this.handlePasswordChange} value={this.state.password} type='password' name="login_password" />
                   <div>
-                    <button className="login-button" type="submit">Login</button>
+                    <button className="btn-primary" type="submit">Login</button>
                   </div>
                 </form>
                 <div className="register-trigger-container">
-                  ...Or  <button className="register-trigger" onClick={this.handleRegisterClick}>create account</button>
+                  ...Or  <button className="register-trigger" onClick={this.handleRegisterToggle}>create account</button>
                 </div>
               </div>
               <div className="register-container" visible={`${this.state.loginDetailsCollapsed}`}>
                 <div>
                   <span className="register-title">Create account</span>
-                  <button className="cancel-register-button" onClick={this.handleRegisterClick}>
+                  <button className="cancel-register-button" onClick={this.handleRegisterToggle}>
                     cancel
                   </button>
                 </div>

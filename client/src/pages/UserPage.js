@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import '../styles/sass/components/UserPage.scss';
+import '../styles/sass/5-pages/UserPage.scss';
 
 class UserPage extends Component {
 

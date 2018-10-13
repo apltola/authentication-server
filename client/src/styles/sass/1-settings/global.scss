@@ -1,0 +1,35 @@
+@import './colors.scss';
+
+html {
+  box-sizing: border-box;
+	font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  min-height: 100vh;
+	color: $font_dark_primary;
+  font-family:
+		-apple-system,
+		sans-serif,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Helvetica,
+		Arial,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		'Segoe UI Symbol';
+}
+
+b,
+strong {
+	font-weight: bolder;
+}

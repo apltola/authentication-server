@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-
-import '../styles/sass/components/App.scss';
 import { fetchUser } from '../actions';
+
 import Header from '../components/Header';
 import LandingPage from './LandingPage';
 import UserPage from './UserPage';
+import '../styles/sass/5-pages/App.scss';
 
 const LoadableNotFoundPage = Loadable({
   loader: () => import('./NotFound'),

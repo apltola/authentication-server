@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import '../styles/sass/components/LandingPage.scss';
+import '../styles/sass/5-pages/LandingPage.scss';
 
 class Home extends Component {
   render() {

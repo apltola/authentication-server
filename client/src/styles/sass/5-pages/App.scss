@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .content {
+    flex: 1;
+    padding: 0 1em;
+    max-width: 1200px;
+  }
+}

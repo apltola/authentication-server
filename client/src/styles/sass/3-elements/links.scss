@@ -1,0 +1,49 @@
+@import '../1-settings/colors.scss';
+
+.no-focus-outline a:focus {
+  outline: none;
+}
+
+a {
+	color: $font_dark_primary;
+  text-decoration: none;
+  
+  &:not(.link-button) {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 250ms;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    
+    &:hover::before,
+    &:hover::after {
+      width: 50%;
+    }
+
+    &::before {
+      display: inline-block;
+      position: absolute;
+      bottom: -5px; left: 50%;
+      content: '';
+      height: 2px;
+      width: 0;
+      background: #252527;
+      transition: all 250ms;
+    }
+
+    &::after {
+      display: inline-block;
+      position: absolute;
+      bottom: -5px; right: 50%;
+      content: '';
+      height: 2px;
+      width: 0;
+      background: #252527;
+      transition: all 250ms;
+    }
+  }
+}

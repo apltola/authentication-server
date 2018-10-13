@@ -1,0 +1,38 @@
+@import '../1-settings/colors.scss';
+
+.login-form {
+  padding-top: 1.5em;
+
+  .login-title {
+    padding-bottom: 0.7em;
+    font-weight: bold;
+  }
+
+  button.login-button {
+    border: 1px solid $font_dark_primary;
+    background: transparent;
+  }
+
+  label {
+    display: block;
+  }
+
+  input {
+    width: 100%;
+    border: 1px solid $inputBorder;
+    background-color: $inputBg_grey;
+    transition: all 200ms;
+
+    &[error="true"] {
+      border: 1px solid $errorRed;
+      &:focus {
+        border: 1px solid $errorRed;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $inputBorder_active;
+    }
+  }
+}

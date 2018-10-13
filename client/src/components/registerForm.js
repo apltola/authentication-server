@@ -5,7 +5,7 @@ import { setAuth } from '../actions';
 import { isEmpty } from '../helpers/helpers';
 import * as Yup from 'yup';
 import axios from 'axios';
-import '../styles/sass/components/AuthForms.scss';
+import '../styles/sass/4-components/registerForm.scss';
 
 const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('invalid email').required('email required!'),

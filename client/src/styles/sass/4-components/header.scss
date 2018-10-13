@@ -1,4 +1,7 @@
-@import '../helpers/all.scss';
+@import '../1-settings/colors.scss';
+@import '../2-tools/mixins.scss';
+@import '../3-elements/buttons.scss';
+
 
 .header {
   position: relative;
@@ -30,7 +33,7 @@
 
       &:hover {
         .auth-card {
-          height: 31em;
+          height: 32.5em;
         }
       }
 
@@ -182,34 +185,11 @@
           }
         }
 
-        .login-form {
-          padding-top: 1.5em;
-
-          .login-title {
-            padding-bottom: 0.7em;
-            font-weight: bold;
-          }
-
-          button.login-button {
-            border: 1px solid $font_dark_primary;
-            background: transparent;
-          }
-
-          label {
-            display: block;
-          }
-
-          input {
-            border: 1px solid black;
-            margin-bottom: 0.6em;
-          }
-        }
-
         .register-trigger-container {
           padding-top: 1.8em;
 
           button.register-trigger {
-            @extend .unstyled-button;
+            @extend .btn-unstyled;
             border-bottom: 1px solid transparent;
 
             &:hover {
@@ -229,26 +209,18 @@
           }
 
           button.cancel-register-button {
-            @extend .unstyled-button;
+            @extend .btn-unstyled;
             color: transparent;
             float: right;
 
             &:hover {
               border-bottom: 1px solid $font_dark_primary;
             }
+
+            &:active, &:focus {
+              outline: none;
+            }
           }
-
-          // .register-form {
-          //   padding-top: 1em;
-
-          //   label {
-          //     display: block;
-          //     color: transparent;
-          //   }
-
-          //   input {
-          //   }
-          // }
 
           &[visible="true"] {
             height: 10em;
@@ -263,24 +235,9 @@
             button.cancel-register-button {
               color: $font_dark_primary;
             }
-
-            .register-form {
-              label {
-                display: block;
-                color: $font_dark_primary;
-              }
-            }
           }
         }
       }
     }
   }
-}
-
-.unstyled-button {
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid transparent;
 }

@@ -1,4 +1,4 @@
-@import '../helpers/all.scss';
+@import '../1-settings/colors.scss';
 
 .register-form {
   padding-top: 1em;
@@ -9,24 +9,34 @@
   }
 
   input {
-    border: 1px solid grey;
-    transition: all 300ms;
+    width: 100%;
+    border: 1px solid $inputBorder;
+    background-color: $inputBg_grey;
+    transition: all 200ms;
 
     &[error="true"] {
       border: 1px solid $errorRed;
+      &:focus {
+        border: 1px solid $errorRed;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $inputBorder_active;
     }
   }
   
   .error-message {
     height: 0;
-    color: transparent;
     margin-bottom: 1em;
+    color: transparent;
     transition: all 300ms;
 
     &[triggered="true"] {
-      color: $errorRed;
-      height: 1.5em;
+      height: 1.6em;
       margin-bottom: 0;
+      color: $errorRed;
     }
   }
 
