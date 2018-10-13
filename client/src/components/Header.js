@@ -106,9 +106,9 @@ class Header extends Component {
                 <form className="login-form" onSubmit={this.handleSubmit}>
                   <div className="login-title">Login with username</div>
                   <label htmlFor="login_username">Username</label>
-                  <input onChange={this.handleUsernameChange} value={this.state.username} type='text' name="login_username" required autoComplete="off" />
+                  <input onChange={this.handleUsernameChange} value={this.state.username} type='text' name="login_username" autoComplete="off" />
                   <label htmlFor="login_password">Password</label>
-                  <input onChange={this.handlePasswordChange} value={this.state.password} type='password' name="login_password" required />
+                  <input onChange={this.handlePasswordChange} value={this.state.password} type='password' name="login_password" />
                   <div>
                     <button className="login-button" type="submit">Login</button>
                   </div>
@@ -124,7 +124,7 @@ class Header extends Component {
                     cancel
                   </button>
                 </div>
-                <RegisterForm />
+                <RegisterForm registerCallback={() => this.props.history.push('/user')} />
               </div>
             </div>
           </div>
@@ -140,7 +140,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state.loginDetailsCollapsed);
     const brandLinkDestination = this.props.auth ? '/user' : '/';
 
     return <div className="header">
@@ -152,8 +151,10 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, authError }) {
+  console.log({auth});
+  console.log({authError});
+  return { auth, authError };
 }
 
 export default connect(mapStateToProps)(Header);

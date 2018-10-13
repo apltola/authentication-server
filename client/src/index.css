@@ -14,13 +14,12 @@ body {
 	padding: 0;
 	background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   min-height: 100vh;
-	color: rgba(0,0,0,.7);
+	color: rgba(0, 0, 0, .7);
   font-family:
 		-apple-system,
 		sans-serif,
 		BlinkMacSystemFont,
 		'Segoe UI',
-		Roboto,
 		Helvetica,
 		Arial,
 		'Apple Color Emoji',
@@ -53,7 +52,7 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-	color: rgba(0,0,0,.7);
+	color: rgba(0, 0, 0, .7);
 	cursor: pointer;
 	-webkit-appearance: none;
 }

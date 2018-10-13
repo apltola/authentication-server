@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const keys = require('./config/keys');
 const mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.use(cookieSession({ //cookieSession middleware handles cookie stuff. it extr
   keys: [keys.cookieKey]
 }));
 
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 

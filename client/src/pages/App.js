@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Header />
+          <Route component={Header} />
           <div className="app">
             <div className="content">
               <Switch>

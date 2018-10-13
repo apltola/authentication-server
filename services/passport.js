@@ -106,6 +106,7 @@ passport.use(new TwitterStrategy(
       provider: profile.provider,
       twitterId: profile.id,
       username: profile.username,
+      username_lower: profile.username.toLowerCase(),
       displayName: profile.displayName,
       imageUrl: profile.photos[0].value
     }).save();
@@ -134,6 +135,7 @@ passport.use(new GithubStrategy(
       provider: profile.provider,
       displayName: profile.displayName,
       username: profile.username,
+      username_lower: profile.username.toLowerCase(),
       imageUrl: profile.photos[0].value
     }).save();
 
@@ -142,21 +144,20 @@ passport.use(new GithubStrategy(
 ));
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
+  async (username, password, done) => {
+    const existingUser = await User.findOne({ username: username });
+    if (existingUser) {
+      console.log('user already exists!');
+      return done(null, existingUser);
+    }
 
-      if (!user) {
-        return done(null, false);
-      }
+    const newUser = await new User({
+      provider: 'local',
+      username: username,
+      username_lower: username.toLowerCase(),
+      password: password
+    }).save();
 
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      
-      return done(null, user);
-    });
+    done(null, newUser);
   }
 ));

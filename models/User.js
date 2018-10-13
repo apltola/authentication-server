@@ -8,6 +8,8 @@ const userSchema = new Schema({
   twitterId: String,
   githubId: String,
   username: String,
+  username_lower: String,
+  password: String,
   displayName: String,
   firstName: String,
   lastName: String,

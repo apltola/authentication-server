@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
+import { setAuth } from '../actions';
 import { isEmpty } from '../helpers/helpers';
 import * as Yup from 'yup';
+import axios from 'axios';
 import '../styles/sass/components/AuthForms.scss';
 
 const RegisterSchema = Yup.object().shape({
@@ -11,30 +14,60 @@ const RegisterSchema = Yup.object().shape({
   confirmPassword: Yup.string().required('confirm your goddamn password!!')
 })
 
-export default class RegisterForm extends Component {
+class RegisterForm extends Component {
   constructor() {
     super();
-
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      passwordMismatch: false
+      emailAuthError: '',
+      usernameAuthError: '',
+      passwordMismatch: false,
     }
   }
 
-  handleSubmit = values => {
-    console.log({values});
-
+  handleSubmit = async values => {
     if (values.password !== values.confirmPassword) {
-      this.setState({ passwordMismatch: true });
+      return this.setState({ passwordMismatch: true });
     } else {
-      this.state.passwordMismatch ? this.setState({ passwordMismatch: false }) : null;
+      this.state.passwordMismatch ? this.setState(() => ({ passwordMismatch: false })) : null;
+    }
+
+    try {
+      const res = await axios.post('/api/register', values);
+      this.props.setAuth(res.data);
+      this.props.registerCallback();
+    } catch(error) {
+      if (error.response.data) {
+        const { data } = error.response;
+
+        if (data === 'username_taken') {
+          this.setState(() => ({ usernameAuthError: 'This username is already taken' }));
+        }
+
+        else if (data === 'email_taken') {
+          this.setState(() => ({ emailAuthError: 'This email is already registered' }))
+        }
+
+        else if (data === 'username_and_email_taken') {
+          this.setState(() => {
+            return {
+              usernameAuthError: 'This username is already taken',
+              emailAuthError: 'This email is already registered'
+            }
+          })
+        }
+      }
+
+      else {
+        console.error(error)
+      }
     }
   }
 
   render() {
-    const { passwordMismatch } = this.state;
-
+    const { passwordMismatch, usernameAuthError, emailAuthError } = this.state;
+    
     return (
       <div>
         <Formik
@@ -42,15 +75,33 @@ export default class RegisterForm extends Component {
           validationSchema={RegisterSchema}
           onSubmit={this.handleSubmit}
         >
-          {({ errors, touched, isSubmitting, dirty, handleReset }) => {
+          {({values, errors, touched, isSubmitting, dirty, handleReset, handleChange }) => {
             return <Form className="register-form">
               <div>Email</div>
-              <Field name="email" type="email" error={errors.email && touched.email ? 'true' : 'false'} />
-              <div className="error-message" triggered={errors.email && touched.email ? 'true' : 'false'}>{errors.email}</div>
+              <Field onChange={e => {
+                if (emailAuthError) { this.setState(() => ({ emailAuthError: null }))}
+                if (isSubmitting) { isSubmitting = false }
+                handleChange(e); }}
+                name="email"
+                type="email"
+                error={(errors.email && touched.email) || emailAuthError ? 'true' : 'false'}
+              />
+              <div className="error-message" triggered={(errors.email && touched.email) || emailAuthError ? 'true' : 'false'}>
+                {errors.email}{emailAuthError}
+              </div>
 
               <div>Username</div>
-              <Field name="username" type="text" error={errors.username && touched.username ? 'true' : 'false'} />
-              <div className="error-message" triggered={errors.username && touched.username ? 'true' : 'false'}>{errors.username}</div>
+              <Field onChange={e => {
+                if (usernameAuthError) { this.setState(() => ({ usernameAuthError: null }))}
+                if (isSubmitting) { isSubmitting = false }
+                handleChange(e); }}
+                name="username"
+                type="text"
+                error={(errors.username && touched.username) || usernameAuthError ? 'true' : 'false'}
+              />
+              <div className="error-message" triggered={(errors.username && touched.username) || usernameAuthError ? 'true' : 'false'}>
+                {errors.username}{usernameAuthError}
+              </div>
 
               <div>Password</div>
               <Field name="password" type="password" error={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'} />
@@ -63,13 +114,13 @@ export default class RegisterForm extends Component {
               <div className="register-button-container">
                 <button className="register-submit"
                   type="submit"
-                  disabled={!isEmpty(errors) || isSubmitting || !dirty}>
+                  disabled={!isEmpty(errors) || !dirty}>
                   submit
                 </button>
                 <button className="register-reset"
                   type="button"
                   onClick={handleReset}
-                  disabled={!dirty || isSubmitting}>
+                  disabled={!dirty}>
                   reset
                 </button>
               </div>
@@ -79,3 +130,5 @@ export default class RegisterForm extends Component {
     )
   }
 }
+
+export default connect(null, { setAuth })(RegisterForm)

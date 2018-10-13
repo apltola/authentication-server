@@ -62,6 +62,7 @@ const config = {
       "/auth/facebook": { target: 'http://localhost:5000' },
       "/auth/twitter": { target: 'http://localhost:5000' },
       "/auth/github": { target: 'http://localhost:5000' },
+      "/api/register": { target: 'http://localhost:5000' },
       "/api/*": { target: 'http://localhost:5000' }
     }
   }

@@ -1,4 +1,5 @@
 const passport = require('passport'); //this has nothing to do with the stuff in our passport.js config file
+const { checkExistingUser } = require('../controllers/authController');
 
 module.exports = function(app) {
   app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -22,9 +23,9 @@ module.exports = function(app) {
   })
 
   //local register
-  app.get('/api/register', (req, res) => {
-    res.send('REGISTER');
-  });
+  app.post('/api/register', checkExistingUser, passport.authenticate('local', { failureRedirect: '/'}), (req, res) => {
+    res.send(req.user);
+  }); 
 
   app.get('/api/logout', (req, res) => {
     req.logout(); //logout() is added by passport

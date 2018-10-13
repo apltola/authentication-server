@@ -9,7 +9,7 @@ class UserPage extends Component {
     if (!user) return null;
 
     return Object.keys(user)
-      .filter(key => key !== '__v' && key !== '_id')
+      .filter(key => key !== '__v' && key !== '_id' && key !== 'username_lower' && key !== 'password')
       .map(key => {
         if (!user[key]) {
           return null;
