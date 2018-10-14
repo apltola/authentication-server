@@ -34,6 +34,7 @@
       &:hover {
         .auth-card {
           height: 35em;
+          margin-top: 0;
           border: 1px solid #efefef;
           background: rgba(250, 250, 250, .85);
           @include xs {
@@ -58,6 +59,7 @@
         position: absolute;
         right: 0;
         height: 0;
+        margin-top: -1.1em;
         padding-left: 3em;
         padding-right: 3em;
         overflow: hidden;
