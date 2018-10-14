@@ -29,7 +29,7 @@
     .auth-buttons {
       position: relative;
       display: inline-block;
-      transition: all 250ms cubic-bezier(.25,.8,.25,1);
+      transition: all 250ms ease;
 
       &:hover {
         .auth-card {
@@ -48,7 +48,7 @@
         cursor: pointer;
         padding: 0.5em 0.2em;
         font-weight: bolder;
-        transition: all 250ms cubic-bezier(.25,.8,.25,1);
+        transition: all 250ms ease;
         @include xs {
           padding-bottom: 0;
         }
@@ -63,16 +63,16 @@
         overflow: hidden;
         background: none;
         border: 1px solid transparent;
-        transition: all 250ms cubic-bezier(.25,.8,.25,1);
+        transition: all 250ms ease;
         @include xs {
           right: 50%;
           transform: translateX(50%);
         }
 
         .login-container {
-          height: 29em;
-          overflow: visible;
-          transition: all 250ms cubic-bezier(.25,.8,.25,1);
+          height: 33em;
+          overflow: hidden;
+          transition: all 250ms ease;
 
           &[collapsed="true"] {
             height: 0;
@@ -89,7 +89,7 @@
           box-shadow: none;
           color: transparent;
           cursor: pointer;
-          transition: all 250ms cubic-bezier(.25,.8,.25,1);
+          transition: all 250ms;
           
           .btn-content {
             display: flex;
@@ -99,7 +99,7 @@
             .btn-icon {
               background: $buttonWhite;
               height: 30px;
-              transition: all 250ms cubic-bezier(.25,.8,.25,1);
+              transition: all 250ms;
             }
             
             .btn-txt {
@@ -215,6 +215,7 @@
           overflow: hidden;
           color: transparent;
           padding-top: 1.5em;
+          transition: 250ms ease;
 
           .register-title {
             color: transparent;
@@ -235,9 +236,9 @@
           }
 
           &[visible="true"] {
-            height: 10em;
+            height: 25em;
             color: $font_dark_primary;
-            overflow: visible;
+            overflow: hidden;
 
             .register-title {
               font-weight: bold;
