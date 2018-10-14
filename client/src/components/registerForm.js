@@ -83,6 +83,7 @@ class RegisterForm extends Component {
                 handleChange(e); }}
                 name="email"
                 type="email"
+                autoComplete="off"
                 error={(errors.email && touched.email) || emailAuthError ? 'true' : 'false'}
               />
               <div className="error-message" triggered={(errors.email && touched.email) || emailAuthError ? 'true' : 'false'}>
@@ -96,6 +97,7 @@ class RegisterForm extends Component {
                 handleChange(e); }}
                 name="username"
                 type="text"
+                autoComplete="off"
                 error={(errors.username && touched.username) || usernameAuthError ? 'true' : 'false'}
               />
               <div className="error-message" triggered={(errors.username && touched.username) || usernameAuthError ? 'true' : 'false'}>
@@ -103,13 +105,13 @@ class RegisterForm extends Component {
               </div>
 
               <div>Password</div>
-              <Field name="password" type="password" error={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'} />
+              <Field name="password" type="password" autoComplete="off" error={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'} />
               <div className="error-message" triggered={((errors.password && touched.password) || passwordMismatch) ? 'true' : 'false'}>
                 {passwordMismatch ? 'your passwords don\'t match!' : errors.password}
               </div>
 
               <div>Confirm password</div>
-              <Field name="confirmPassword" type="password" error={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'} />
+              <Field name="confirmPassword" type="password" autoComplete="off" error={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'} />
               <div className="error-message" triggered={((errors.confirmPassword && touched.confirmPassword) || passwordMismatch) ? 'true' : 'false'}>
                 {passwordMismatch ? 'your passwords don\'t match!' : errors.confirmPassword}
               </div>
