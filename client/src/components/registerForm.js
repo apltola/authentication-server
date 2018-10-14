@@ -37,6 +37,7 @@ class RegisterForm extends Component {
       const res = await axios.post('/api/register', values);
       this.props.setAuth(res.data);
       this.props.registerCallback();
+      
     } catch(error) {
       if (error.response.data) {
         const { data } = error.response;
@@ -59,9 +60,7 @@ class RegisterForm extends Component {
         }
       }
 
-      else {
-        console.error(error)
-      }
+      else console.error(error)
     }
   }
 
@@ -116,7 +115,7 @@ class RegisterForm extends Component {
               </div>
 
               <div className="register-button-container">
-                <button className="register-submit"
+                <button className="btn-primary"
                   type="submit"
                   disabled={!isEmpty(errors) || !dirty}>
                   Submit

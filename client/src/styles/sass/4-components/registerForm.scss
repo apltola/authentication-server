@@ -1,4 +1,5 @@
 @import '../1-settings/colors.scss';
+@import '../3-elements/buttons.scss';
 
 .register-form {
   padding-top: 1em;
@@ -44,6 +45,7 @@
     padding-top: 0.5em;
     
     button.register-reset {
+      @extend .btn-primary;
       margin-left: 0.5em;
     }
   }

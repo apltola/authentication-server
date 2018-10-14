@@ -87,7 +87,7 @@ class Header extends Component {
                 {this.FacebookButton()}
                 {this.Twitterbutton()}
                 {this.GithubButton()}
-                <LoginForm registerCallback={() => this.props.history.push('/user')} />
+                <LoginForm loginCallback={() => this.props.history.push('/user')} />
                 <div className="register-trigger-container">
                   ...Or  <button className="register-trigger" onClick={this.handleRegisterToggle}>create account</button>
                 </div>

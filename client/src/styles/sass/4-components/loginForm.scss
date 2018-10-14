@@ -19,7 +19,6 @@
 
   input {
     width: 100%;
-    margin-bottom: 0.8em;
     border: 1px solid $inputBorder;
     background-color: $inputBg_grey;
     transition: all 200ms;
@@ -34,6 +33,19 @@
     &:focus {
       outline: none;
       border: 1px solid $inputBorder_active;
+    }
+  }
+
+  .error-message {
+    height: 0;
+    margin-bottom: 1em;
+    color: transparent;
+    transition: all 300ms;
+
+    &[triggered="true"] {
+      height: 1.6em;
+      margin-bottom: 0;
+      color: $errorRed;
     }
   }
 }

@@ -145,19 +145,37 @@ passport.use(new GithubStrategy(
 
 passport.use(new LocalStrategy(
   async (username, password, done) => {
-    const existingUser = await User.findOne({ username: username });
-    if (existingUser) {
-      console.log('user already exists!');
-      return done(null, existingUser);
+    try {
+      const existingUser = await User.findOne({ username: username });
+      console.log({existingUser});
+
+      if (!existingUser) {
+        return done(null, false);
+      }
+
+      existingUser.verifyPassword(password, (error, isMatch) => {
+        if (error) {
+          return done(error);
+        }
+
+        if (!isMatch) {
+          return done(null, false);
+        }
+
+        return done(null, existingUser);
+      })
+
+    } catch(error) {
+      return done(error);
     }
 
-    const newUser = await new User({
-      provider: 'local',
-      username: username,
-      username_lower: username.toLowerCase(),
-      password: password
-    }).save();
+    // const newUser = await new User({
+    //   provider: 'local',
+    //   username: username,
+    //   username_lower: username.toLowerCase(),
+    //   password: password
+    // }).save();
 
-    done(null, newUser);
+    // done(null, newUser);
   }
 ));
