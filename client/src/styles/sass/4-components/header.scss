@@ -33,7 +33,7 @@
 
       &:hover {
         .auth-card {
-          height: 34.5em;
+          height: 35em;
           border: 1px solid #efefef;
           background: rgba(250, 250, 250, .85);
           @include xs {
@@ -236,7 +236,7 @@
           }
 
           &[visible="true"] {
-            height: 25em;
+            height: 30em;
             color: $font_dark_primary;
             overflow: hidden;
 

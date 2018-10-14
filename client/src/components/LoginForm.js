@@ -20,6 +20,7 @@ class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       usernameAuthError: null,
+      passwordAuthError: null
     }
   }
 
@@ -30,12 +31,15 @@ class LoginForm extends Component {
       this.props.loginCallback();
 
     } catch (error) {
-      console.error(error);
       if (error.response.data) {
         const { data } = error.response;
 
         if (data === 'invalid_username') {
           this.setState(() => ({ usernameAuthError: 'Invalid username' }));
+        }
+
+        else if (data === 'incorrect_password') {
+          this.setState(() => ({ passwordAuthError: 'Incorrect password' }))
         }
       }
 
@@ -44,7 +48,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { usernameAuthError } = this.state;
+    const { usernameAuthError, passwordAuthError } = this.state;
 
     return (
       <div>
@@ -70,8 +74,16 @@ class LoginForm extends Component {
               </div>
 
               <div>Password</div>
-              <Field name="password" type="password" autoComplete="off" />
-              <div className="error-message"></div>
+              <Field onChange={e => {
+                this.setState(() => ({ passwordAuthError: null }));
+                handleChange(e);}}
+                name="password"
+                type="password"
+                autoComplete="off"
+                error={passwordAuthError ? 'true' : 'false'} />
+              <div className="error-message" triggered={passwordAuthError ? 'true' : 'false'}>
+                {passwordAuthError}
+              </div>
 
               <button className="btn-primary" type="submit" disabled={!isEmpty(errors) || !dirty}>
                 Login

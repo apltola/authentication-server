@@ -43,6 +43,18 @@ module.exports = {
       res.status(404).send('invalid_username');
     }
 
-    else next();
+    else {
+      existingUser.verifyPassword(password, (error, isMatch) => {
+        if (error) {
+          res.status(500).send('login_error');
+        }
+
+        else if (!isMatch) {
+          res.status(403).send('incorrect_password');
+        }
+
+        else next();
+      })
+    }
   }
 }
