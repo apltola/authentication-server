@@ -33,6 +33,7 @@ class LoginForm extends Component {
     } catch (error) {
       if (error.response.data) {
         const { data } = error.response;
+        console.log('error message: ', data);
 
         if (data === 'invalid_username') {
           this.setState(() => ({ usernameAuthError: 'Invalid username' }));

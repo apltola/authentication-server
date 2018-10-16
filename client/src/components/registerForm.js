@@ -41,6 +41,7 @@ class RegisterForm extends Component {
     } catch(error) {
       if (error.response.data) {
         const { data } = error.response;
+        console.log('error message: ', data);
 
         if (data === 'username_taken') {
           this.setState(() => ({ usernameAuthError: 'This username is already taken' }));

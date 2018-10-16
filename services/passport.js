@@ -168,14 +168,5 @@ passport.use(new LocalStrategy(
     } catch(error) {
       return done(error);
     }
-
-    // const newUser = await new User({
-    //   provider: 'local',
-    //   username: username,
-    //   username_lower: username.toLowerCase(),
-    //   password: password
-    // }).save();
-
-    // done(null, newUser);
   }
 ));
